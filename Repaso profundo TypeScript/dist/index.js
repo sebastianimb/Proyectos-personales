@@ -1,26 +1,23 @@
 "use strict";
-let mensaje = "Hola mundo";
-mensaje = 'Otro';
-mensaje = 'Other';
-console.log(mensaje);
-let extincionDinosaurios = 76000000;
-let dinosaurioFavorito = "T-Rex";
-let extintos = true;
-function configuracion(config) {
-    return config;
+class Personaje {
+    constructor(id, nombre, _hp, level) {
+        this.id = id;
+        this.nombre = nombre;
+        this._hp = _hp;
+        this.level = level;
+    }
+    subirNivel() {
+        this.level++;
+        return this.level;
+    }
+    cambiarHp(cantidad) {
+        this._hp += cantidad;
+        return this._hp;
+    }
 }
-let animales = ["Perro", "Gato", "Vaca"];
-let nums = [1, 2, 3, 4];
-let checks = [];
-let nums2 = [];
-let tupla = [1, 'Felipe'];
-var Talla;
-(function (Talla) {
-    Talla["Peque\u00F1a"] = "s";
-    Talla["Mediana"] = "m";
-    Talla["Grande"] = "l";
-    Talla["ExtraGrande"] = "xl";
-})(Talla || (Talla = {}));
-const talla = Talla.Pequeña;
-console.log(talla);
+const personaje = new Personaje(1, 'Sebastian', 100, 1);
+console.log(personaje);
+if (personaje instanceof Personaje) {
+    console.log('Type Narrowing de clases');
+}
 //# sourceMappingURL=index.js.map
