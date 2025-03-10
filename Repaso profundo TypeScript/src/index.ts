@@ -207,8 +207,9 @@ function procesa(algo: unknown){
     }
 }
  */
-// P.O.O
 
+
+// P.O.O
 class Personaje {
     /* readonly id:number
     nombre: string
