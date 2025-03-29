@@ -17,7 +17,6 @@ export class FrutaComponent{
   }
   saludar(): void {
     console.log('Hola Mundo');
-
   }
 }
 

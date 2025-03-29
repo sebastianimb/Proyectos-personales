@@ -10,13 +10,21 @@ import { log } from "console";
 
 export class EmpleadoComponent {
   public titulo = 'Titulo del componente empleado'
-  public empleado!: Empleado;
+  public empleado: Empleado;
   public trabajadores: Array<Empleado> = []
-  ngOnInit(){
+  public color:string = 'lightblue'
+  public color_seleccionado ='#ccc'
+  constructor(){
     this.empleado = new Empleado('Sebastian Molina', 28, 'Desarrollador Web', false)
   }
-  agregarTrabajador(){
+  ngOnInit(){
+    this.agregarTrabajador(new Empleado('Felipe Molina', 30, 'QA', false))
+  }
+  agregarSebastian(){
     this.trabajadores.push(this.empleado)
+  }
+  agregarTrabajador(trabajador:Empleado){
+    this.trabajadores.push(trabajador)
   }
   get getTrabajadores(){
     return this.trabajadores

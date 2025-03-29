@@ -1,4 +1,44 @@
 <h1>{{ titulo }}</h1>
-
-<p>Empleado:</p>
-<p>{{ empleado.nombre }}</p>
+<button (click)="agregarSebastian()">Agregar Sebastian</button>
+<p *ngIf="trabajadores.length > 1">{{ empleado.nombre }} Agregado</p>
+<h3>Lista de empleados:</h3>
+<ul>
+  Empleado:
+  <li *ngFor="let empleado of trabajadores; let i = index">
+    <p>{{ i + 1 }} {{ empleado.nombre }}</p>
+  </li>
+</ul>
+<h3
+  [style.border]="color_seleccionado === '#ccc' ? '1px solid #ccc' : `1px solid ${color_seleccionado}`"
+  [class.fondoNegro]="color_seleccionado === '#ccc'"
+  [ngClass]="{
+    fondoNegro: color_seleccionado === '#ccc',
+    fondoCeleste: color_seleccionado !== '#ccc',
+  }"
+>
+  Input Color
+</h3>
+<input type="text" placeholder="Color..." [(ngModel)]="color_seleccionado" />
+<div
+  [ngStyle]="{
+    background: color_seleccionado,
+    width: '200px',
+    height: '200px',
+    borderRadius: '12px',
+    margin: '20px'
+  }"
+></div>
+<h3>Switch Color</h3>
+<ul [ngSwitch]="color">
+  <li
+    *ngSwitchCase="'lightblue'"
+    [ngStyle]="{
+      background: color,
+      color: 'white',
+      padding: '20px',
+      borderRadius: '8px'
+    }"
+  >
+    Rojo
+  </li>
+</ul>
