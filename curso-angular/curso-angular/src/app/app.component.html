@@ -1,9 +1,11 @@
+<nav>
+  <a [routerLink]="['/home']" [routerLinkActive]="['active']">Home</a>
+  <a [routerLink]="['/contacto']" [routerLinkActive]="['active']">Contacto</a>
+  <a [routerLink]="['/empleado']" [routerLinkActive]="['active']">Empleado</a>
+  <a [routerLink]="['/frutas']" [routerLinkActive]="['active']">Fruta</a>
+</nav>
 <main class="main">
   <div class="content">
-    <div class="">
-      <fruta></fruta>
-      <empleado></empleado>
-    </div>
+    <router-outlet></router-outlet>
   </div>
 </main>
-<router-outlet />

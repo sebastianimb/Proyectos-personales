@@ -3,7 +3,10 @@ import { BrowserModule, provideClientHydration, withEventReplay } from '@angular
 import { FormsModule} from '@angular/forms'
 
 import { AppRoutingModule } from './app-routing.module';
+import { routing, appRoutingProviders} from './app.routing'
 import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { ContactComponent } from './contacto/contacto.component';
 import { FrutaComponent } from './fruta/fruta.component';
 import { EmpleadoComponent } from './ermpleado/empleado.component';
 
@@ -11,15 +14,19 @@ import { EmpleadoComponent } from './ermpleado/empleado.component';
   declarations: [
     AppComponent,
     FrutaComponent,
-    EmpleadoComponent
+    EmpleadoComponent,
+    HomeComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    routing
   ],
   providers: [
-    provideClientHydration(withEventReplay())
+    provideClientHydration(withEventReplay()),
+    appRoutingProviders
   ],
   bootstrap: [AppComponent]
 })

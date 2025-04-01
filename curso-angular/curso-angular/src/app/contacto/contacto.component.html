@@ -1,0 +1,9 @@
+<h2>{{ titulo }}</h2>
+<div *ngIf="params">
+  <h2>
+    {{ params }}
+  </h2>
+</div>
+<div *ngIf="!params">
+  <button (click)="redirect()">Reedirigir</button>
+</div>
