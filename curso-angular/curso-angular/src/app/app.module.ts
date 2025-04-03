@@ -10,13 +10,16 @@ import { ContactComponent } from './contacto/contacto.component';
 import { FrutaComponent } from './fruta/fruta.component';
 import { EmpleadoComponent } from './ermpleado/empleado.component';
 
+import { ConversorPipe } from './pipes/conversor.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
     FrutaComponent,
     EmpleadoComponent,
     HomeComponent,
-    ContactComponent
+    ContactComponent,
+    ConversorPipe
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,6 @@
 <h2>{{ titulo }}</h2>
+<h3>{{ fecha | date : "dd/MM/yyyy" | uppercase }}</h3>
+<h3>{{ "5" | conversor : "7" }}</h3>
 <h3>Listado de ropa en almacén:</h3>
 <ul>
   <li *ngFor="let prenda of listado_ropa; let i = index">
