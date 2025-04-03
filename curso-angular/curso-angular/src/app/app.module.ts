@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contacto/contacto.component';
 import { FrutaComponent } from './fruta/fruta.component';
 import { EmpleadoComponent } from './ermpleado/empleado.component';
+import { CochesComponent } from './coches/coches.component';
 
 import { ConversorPipe } from './pipes/conversor.pipe';
 
@@ -19,6 +20,7 @@ import { ConversorPipe } from './pipes/conversor.pipe';
     EmpleadoComponent,
     HomeComponent,
     ContactComponent,
+    CochesComponent,
     ConversorPipe
   ],
   imports: [

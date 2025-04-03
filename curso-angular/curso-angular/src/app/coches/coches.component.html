@@ -1,0 +1,50 @@
+<h1>Coches</h1>
+<h3>Formulario de coches</h3>
+<form #formCoche="ngForm" (ngSubmit)="onSumbit(); formCoche.form.reset()">
+  <div>
+    <label>Nombre:</label>
+    <input
+      type="text"
+      name="nombre"
+      #nombre="ngModel"
+      [(ngModel)]="coche.nombre"
+      required
+    />
+    <span *ngIf="nombre.touched && !nombre.valid">Campo nombre no válido.</span>
+  </div>
+  <div>
+    <label>Caballaje:</label>
+    <input
+      type="text"
+      name="caballaje"
+      #caballaje="ngModel"
+      [(ngModel)]="coche.caballaje"
+      required
+      pattern="[0-9]+"
+    />
+    <span *ngIf="caballaje.touched && !caballaje.valid"
+      >Campo caballaje no válido.</span
+    >
+  </div>
+  <div>
+    <label>Color:</label>
+    <input
+      type="text"
+      name="color"
+      #color="ngModel"
+      [(ngModel)]="coche.color"
+    />
+    <span *ngIf="caballaje.touched && !color.valid"
+      >Campo color no válido.</span
+    >
+  </div>
+  <input type="submit" value="Guardar" [disabled]="!formCoche.form.valid" />
+</form>
+
+<div>
+  <ul>
+    <li *ngFor="let coche of coches">
+      {{ coche.nombre }} - {{ coche.caballaje }} - {{ coche.color }}
+    </li>
+  </ul>
+</div>
