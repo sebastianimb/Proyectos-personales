@@ -10,6 +10,7 @@ import { ContactComponent } from './contacto/contacto.component';
 import { FrutaComponent } from './fruta/fruta.component';
 import { EmpleadoComponent } from './ermpleado/empleado.component';
 import { CochesComponent } from './coches/coches.component';
+import { HttpClientModule } from '@angular/common/http';
 
 import { ConversorPipe } from './pipes/conversor.pipe';
 
@@ -27,7 +28,8 @@ import { ConversorPipe } from './pipes/conversor.pipe';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    routing
+    routing,
+    HttpClientModule
   ],
   providers: [
     provideClientHydration(withEventReplay()),

@@ -48,3 +48,10 @@
     </li>
   </ul>
 </div>
+
+<div>
+  <ul *ngIf="posts.length > 0">
+    <li *ngFor="let post of posts">{{ post.title }} {{ post.body }}</li>
+  </ul>
+  <p *ngIf="posts.length === 0">Cargando...</p>
+</div>

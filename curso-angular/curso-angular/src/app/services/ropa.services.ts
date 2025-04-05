@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { log } from "console";
 
 @Injectable()
 export class RopaService {
