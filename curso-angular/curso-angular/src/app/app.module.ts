@@ -10,6 +10,7 @@ import { ContactComponent } from './contacto/contacto.component';
 import { FrutaComponent } from './fruta/fruta.component';
 import { EmpleadoComponent } from './ermpleado/empleado.component';
 import { CochesComponent } from './coches/coches.component';
+import { PlantillasComponent } from './plantillas/plantillas.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { ConversorPipe } from './pipes/conversor.pipe';
@@ -22,6 +23,7 @@ import { ConversorPipe } from './pipes/conversor.pipe';
     HomeComponent,
     ContactComponent,
     CochesComponent,
+    PlantillasComponent,
     ConversorPipe
   ],
   imports: [
