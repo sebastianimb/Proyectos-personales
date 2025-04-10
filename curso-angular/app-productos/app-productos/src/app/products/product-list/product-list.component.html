@@ -1,0 +1,18 @@
+<div class="ps-4">
+  <h3>{{ titulo }}</h3>
+  <div>
+    @if (productList.length<=0) {
+    <div>Cargando listado...</div>
+    } @else {
+    <ul>
+      @for (product of productList; track product.id) {
+      <li>
+        <strong>{{ product.title }}</strong>
+        <p>${{ product.price }}</p>
+        <p>{{ product.description }}</p>
+      </li>
+      }
+    </ul>
+    }
+  </div>
+</div>

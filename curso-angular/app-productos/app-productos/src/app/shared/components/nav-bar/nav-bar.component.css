@@ -18,5 +18,8 @@
   transition: all 300ms;
 }
 #nav ul li a:hover{
-  background-color: #1a1a1a;
+  background-color: #E03137;
+}
+.active {
+  border-bottom: 3px solid #E03137;
 }
