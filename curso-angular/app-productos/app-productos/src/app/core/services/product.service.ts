@@ -22,4 +22,25 @@ export class ProductService{
   addProducts(producto: Product): Observable<Product>{
     return this._Http.post<Product>(`${this.url}/products/add`,producto)
   }
+  uploadFiles(filesList: File[]): Observable<any>{
+    const formData = new FormData()
+    filesList.forEach((file,index)=>{
+      formData.append(`file${index}`, file)
+    })
+    return this._Http.post(`${this.url}/add/images/195`,formData)
+  }
+  /*
+  const headers = new HttpHeaders()
+  .set('Authorization', 'Bearer token123')
+  .set('Content-Type', 'application/json');
+
+  const params = new HttpParams().set('category', 'electronics');
+
+  this._Http.post<Product>(`${this.url}/products/add`, producto, {
+  headers,
+  params,
+  responseType: 'json',
+  observe: 'response'
+  })
+  */
 }

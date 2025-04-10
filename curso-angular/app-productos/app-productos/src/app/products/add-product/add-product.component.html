@@ -102,7 +102,14 @@
     </div>
     <div>
       <label>Imagen</label>
-      <input class="form-control" type="file" name="image" required />
+      <input
+        class="form-control"
+        type="file"
+        name="image"
+        required
+        multiple
+        (change)="onFileChange($event)"
+      />
     </div>
     <input
       class="btn btn-lg btn-success mt-3"

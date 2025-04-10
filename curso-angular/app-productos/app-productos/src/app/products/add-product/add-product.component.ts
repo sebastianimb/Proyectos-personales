@@ -20,6 +20,7 @@ export class AddProductComponent {
     brand: '',
   }
   productAdd!: Product
+  selectedFiles: File[] = [];
   constructor(
     private _ProvProductService: ProductService
   ){}
@@ -32,6 +33,24 @@ export class AddProductComponent {
     })
   }
   onSubmit(){
+    this.uploadFiles()
     this.addProduct(this.inputProductAdd)
+  }
+  onFileChange(event: Event){
+    // this.selectedFiles = <Array<Files>>event.target.files
+    const input = event.target as HTMLInputElement
+    if (input.files && input.files.length>0) {
+      this.selectedFiles = Array.from(input.files)
+    }
+  }
+  uploadFiles() {
+    if (this.selectedFiles.length > 0) {
+      this._ProvProductService.uploadFiles(this.selectedFiles).subscribe({
+        next: (response) => { console.log('Archivos subidos:', response); },
+        error: (error) => { console.error('Error al subir los archivos:', error); },
+      });
+    } else {
+      console.warn('No se han seleccionado archivos.');
+    }
   }
 }
