@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../../core/services/product.service';
-import { Producto } from '../../core/models/product.model';
+import { Product } from '../../core/models/product.model';
 interface ProductsResponse {
-  products: Producto[]; // Producto[] ya representa la lista de productos
+  products: Product[]; // Producto[] ya representa la lista de productos
   total: number;
   skip: number;
   limit: number;
@@ -17,7 +17,7 @@ interface ProductsResponse {
 })
 export class ProductListComponent {
   titulo= 'Listado de productos'
-  productList: Array<Producto> = []
+  productList: Array<Product> = []
   constructor(private _ProvProductService: ProductService){}
   ngOnInit(){
     this._ProvProductService.getProducts().subscribe({
