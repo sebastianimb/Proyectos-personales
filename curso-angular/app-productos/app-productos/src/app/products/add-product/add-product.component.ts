@@ -12,14 +12,12 @@ import { FormsModule } from '@angular/forms';
 export class AddProductComponent {
   titulo= 'Añadir un producto'
   inputProductAdd: Product = {
-    id: 0,
     title:'',
     description:'',
     category:'',
     price:0,
     stock:1,
     brand: '',
-    sku:'',
   }
   productAdd!: Product
   constructor(
