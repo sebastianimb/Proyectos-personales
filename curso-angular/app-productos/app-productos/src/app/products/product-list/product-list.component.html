@@ -1,18 +1,31 @@
 <div class="ps-4">
   <h3>{{ titulo }}</h3>
-  <div>
+  <div class="row">
     @if (productList.length<=0) {
     <div>Cargando listado...</div>
-    } @else {
-    <ul>
-      @for (product of productList; track product.id) {
-      <li>
-        <strong>{{ product.title }}</strong>
-        <p>${{ product.price }}</p>
-        <p>{{ product.description }}</p>
-      </li>
-      }
-    </ul>
-    }
+    } @else { @for (product of productList; track product.id) {
+    <div class="col-lg-3">
+      <div class="rounded shadow p-4 mt-4 img-container">
+        @if (product.images) {
+        <img class="img-fluid rounded img-product" [src]="product.images[0]" />
+        } @else {
+        <div class="img-filling"></div>
+        }
+        <div class="text-center text-muted">
+          <strong>{{ product.title }}</strong>
+          <p>${{ product.price }}</p>
+          <p class="d-flex gap-2">
+            <a
+              routerLink="/productos/{{ product.id }}"
+              class="btn btn-md btn-primary"
+              >Ver</a
+            >
+            <a href="#" class="btn btn-md btn-warning">Editar</a>
+            <a href="#" class="btn btn-md btn-danger">Eliminar</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    } }
   </div>
 </div>

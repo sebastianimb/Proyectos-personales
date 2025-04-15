@@ -1,0 +1,15 @@
+<div class="ps-3">
+  <h3>Detalle del producto</h3>
+  <p class="text-muted">{{ producto.title }}</p>
+  <div class="row rounded shadow p-4 mt-4 img-container">
+    @for (product of producto.images; track $index) {
+    <img class="img-fluid rounded img-product" [src]="product" />
+    }
+  </div>
+  <p>Descripción: {{ producto.description }}</p>
+  <p>Precio: ${{ producto.price }}</p>
+  <p>Marca: {{ producto.brand }}</p>
+  <p>Categorias: {{ producto.category }}</p>
+  <p>Cantidad disponible: {{ producto.stock }}</p>
+  <p>Tags: {{ producto.tags }}</p>
+</div>

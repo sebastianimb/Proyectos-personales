@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../../core/services/product.service';
 import { Product } from '../../core/models/product.model';
+import { RouterLink } from '@angular/router';
 interface ProductsResponse {
   products: Product[]; // Producto[] ya representa la lista de productos
   total: number;
@@ -10,7 +11,7 @@ interface ProductsResponse {
 @Component({
   selector: 'app-product-list',
   standalone:true,
-  imports: [],
+  imports: [RouterLink],
   providers: [ProductService],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
