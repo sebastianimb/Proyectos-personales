@@ -24,7 +24,9 @@ export class DetailProductComponent {
     //this._router.navigate(['/home'])
     this.id=this._route.snapshot.paramMap.get('id')!
     this.getDetailsProduct()
-    console.log(this.producto);
+  }
+  backToProduct(){
+    this._router.navigate(['/productos'])
   }
   getDetailsProduct(){
     this._ProvProductService.getDetails(this.id).subscribe({

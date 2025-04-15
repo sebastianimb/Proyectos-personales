@@ -3,10 +3,14 @@ import { ProductService } from '../../core/services/product.service';
 import { Product } from '../../core/models/product.model';
 import { RouterLink } from '@angular/router';
 interface ProductsResponse {
-  products: Product[]; // Producto[] ya representa la lista de productos
+  products: Product[];
   total: number;
   skip: number;
   limit: number;
+}
+interface deleteResponse{
+  isDeleted: boolean;
+  deleteOn: string;
 }
 @Component({
   selector: 'app-product-list',
@@ -18,7 +22,9 @@ interface ProductsResponse {
 })
 export class ProductListComponent {
   titulo= 'Listado de productos'
+  productDelete!: Product&deleteResponse
   productList: Array<Product> = []
+  confirm: number | undefined = undefined
   constructor(private _ProvProductService: ProductService){}
   ngOnInit(){
     this._ProvProductService.getProducts().subscribe({
@@ -27,5 +33,19 @@ export class ProductListComponent {
       complete: ()=>{console.log('Llamado a servicio de listado de producto exitoso.');
       }
     })
+  }
+  deleteConfirm(id:number){
+    this.confirm = id
+  }
+  cancelDelete(){
+    this.confirm = undefined
+  }
+  deleteProduct(id: number){
+    this._ProvProductService.deleteProduct(id).subscribe({
+      next:(response: Product&deleteResponse)=>{this.productDelete = response},
+      error:()=>{},
+      complete:()=>{}
+    })
+    this.confirm = undefined
   }
 }

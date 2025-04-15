@@ -10,6 +10,10 @@ interface ProductsResponse {
   skip: number;
   limit: number;
 }
+interface deleteResponse{
+  isDeleted: boolean;
+  deleteOn: string;
+}
 @Injectable()
 export class ProductService{
   url:string
@@ -24,6 +28,12 @@ export class ProductService{
   }
   addProducts(producto: Product): Observable<Product>{
     return this._Http.post<Product>(`${this.url}/products/add`,producto)
+  }
+  editProducts(id:string, product:Product): Observable<Product>{
+    return this._Http.put<Product>(`${this.url}/products/${id}`,product)
+  }
+  deleteProduct(id: number): Observable<Product&deleteResponse>{
+    return this._Http.delete<Product&deleteResponse>(`${this.url}/product/${id}`)
   }
   uploadFiles(filesList: File[]): Observable<any>{
     const formData = new FormData()

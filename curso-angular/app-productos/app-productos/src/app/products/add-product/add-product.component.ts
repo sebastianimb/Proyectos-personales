@@ -33,8 +33,12 @@ export class AddProductComponent {
     })
   }
   onSubmit(){
-    this.uploadFiles()
-    this.addProduct(this.inputProductAdd)
+    if (this.selectedFiles.length > 0) {
+      this.uploadFiles()
+      this.addProduct(this.inputProductAdd)
+    } else{
+      this.addProduct(this.inputProductAdd)
+    }
   }
   onFileChange(event: Event){
     // this.selectedFiles = <Array<Files>>event.target.files
@@ -44,13 +48,9 @@ export class AddProductComponent {
     }
   }
   uploadFiles() {
-    if (this.selectedFiles.length > 0) {
       this._ProvProductService.uploadFiles(this.selectedFiles).subscribe({
         next: (response) => { console.log('Archivos subidos:', response); },
         error: (error) => { console.error('Error al subir los archivos:', error); },
       });
-    } else {
-      console.warn('No se han seleccionado archivos.');
-    }
   }
 }

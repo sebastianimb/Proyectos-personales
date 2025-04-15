@@ -14,15 +14,42 @@
         <div class="text-center text-muted">
           <strong>{{ product.title }}</strong>
           <p>${{ product.price }}</p>
-          <p class="d-flex gap-2">
+          @if (confirm === product.id) {
+          <div class="sure">
+            <div class="d-flex gap-3">
+              <button
+                class="btn btn-sm btn-danger"
+                (click)="deleteProduct(product.id!)"
+              >
+                Quiero eliminarlo
+              </button>
+              <button
+                class="btn btn-sm btn-outline-dark"
+                (click)="cancelDelete()"
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+          } @else {
+          <div class="d-flex gap-2">
             <a
               routerLink="/productos/{{ product.id }}"
               class="btn btn-md btn-primary"
               >Ver</a
             >
-            <a href="#" class="btn btn-md btn-warning">Editar</a>
-            <a href="#" class="btn btn-md btn-danger">Eliminar</a>
-          </p>
+            <a
+              routerLink="/productos/editar/{{ product.id }}"
+              class="btn btn-md btn-warning"
+              >Editar</a
+            >
+            <a
+              class="btn btn-md btn-danger"
+              (click)="deleteConfirm(product.id!)"
+              >Eliminar</a
+            >
+          </div>
+          }
         </div>
       </div>
     </div>
