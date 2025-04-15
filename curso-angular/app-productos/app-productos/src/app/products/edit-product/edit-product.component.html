@@ -1,6 +1,6 @@
 <div class="ps-4">
   <div class="d-flex gap-3">
-    <button class="btn btn-light" (click)="backToProduct()">←</button>
+    <button class="btn btn-outline-dark" (click)="backToProduct()">←</button>
     <h3>{{ titulo }}</h3>
   </div>
   <div class="row">
@@ -68,7 +68,7 @@
           placeholder="$10"
           #price="ngModel"
           [(ngModel)]="inputProductEdit.price"
-          pattern="[0-9]+"
+          pattern="^[0-9]+(\.[0-9]{1,2})?$"
           required
         />
         @if(price.touched && !price.valid){
@@ -123,16 +123,4 @@
       />
     </form>
   </div>
-  @if (inputProductEdit) {
-  <div class="pt-3 ps-3">
-    <h3>Producto que se esta editando:</h3>
-    <p>Id: {{ inputProductEdit.id }}</p>
-    <p>Nombre: {{ inputProductEdit.title }}</p>
-    <p>Descripción: {{ inputProductEdit.description }}</p>
-    <p>Categoria: {{ inputProductEdit.category }}</p>
-    <p>Precio: {{ inputProductEdit.price }}</p>
-    <p>Stock: {{ inputProductEdit.stock }}</p>
-    <p>Marca: {{ inputProductEdit.brand }}</p>
-  </div>
-  }
 </div>

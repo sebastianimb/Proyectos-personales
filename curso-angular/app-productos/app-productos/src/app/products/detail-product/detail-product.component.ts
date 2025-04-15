@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './detail-product.component.css'
 })
 export class DetailProductComponent {
+  titulo = 'Detalle del producto'
   producto!: Product
   id!: string
   constructor(

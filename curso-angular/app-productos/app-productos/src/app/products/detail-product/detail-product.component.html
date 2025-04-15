@@ -1,10 +1,7 @@
 <div class="ps-3">
   <div class="d-flex gap-3">
-    <button class="btn btn-light" (click)="backToProduct()">←</button>
-    <div>
-      <h3>Detalle del producto</h3>
-      <p class="text-muted">{{ producto.title }}</p>
-    </div>
+    <button class="btn btn-outline-dark" (click)="backToProduct()">←</button>
+    <h3>{{ titulo }}</h3>
   </div>
   <div class="row">
     <div class="col-lg-4 rounded shadow p-4 mt-4">
@@ -13,6 +10,7 @@
       }
     </div>
     <div class="col-lg-8">
+      <p class="text-muted">{{ producto.title }}</p>
       <p>Descripción: {{ producto.description }}</p>
       <p>Precio: ${{ producto.price }}</p>
       <p>Marca: {{ producto.brand }}</p>
