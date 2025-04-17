@@ -9,3 +9,9 @@
   <button (click)="cambiar()">Cambiar</button>
   <strong>No soy Administrador</strong>
 </ng-template>
+<p>Informacion desde el hijo: {{ tituloExterno }}</p>
+<app-hijo
+  (printTitle)="suscribeTitle($event)"
+  [propiedadUno]="'Valor Propiedad 1'"
+  [texto]="datosExternos"
+></app-hijo>
