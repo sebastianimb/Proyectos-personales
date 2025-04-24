@@ -53,13 +53,13 @@ class GasCar implements Vehicle {
   }
 }
 
-class ElectricEngine {
+class ElectricEngine implements Engine{
   start(): void{
     console.log('Arrancando motor eléctrico..');
   }
 }
 
-class GasEngine {
+class GasEngine implements Engine{
   start(): void{
     console.log('Arrancando motor de combustión..');
   }
