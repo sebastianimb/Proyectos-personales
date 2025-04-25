@@ -1,0 +1,33 @@
+.button{
+  all: unset;
+  appearance: none;
+  padding: 16px;
+  border-radius: 8px;
+  color: #ccc;
+  width: 142px;
+  text-align: center;
+  cursor: pointer;
+}
+.button:hover{
+  color: white;
+  box-shadow: 4px 4px 1px #141414;
+}
+
+.btn-buy{
+  background-color: #724721;
+}
+.btn-buy:hover{
+  color: white;
+  box-shadow: 4px 4px 1px #24160a;
+}
+
+.btn-sell{
+  border:1px solid #724721;
+  color: #724721;
+}
+
+.btn-sell:hover{
+  color: #bdb28b;
+  border:1px solid #bdb28b;
+  box-shadow: 4px 4px 1px #25231c;
+}

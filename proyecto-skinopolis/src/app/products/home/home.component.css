@@ -1,0 +1,45 @@
+.container-jumbotron{
+  padding-top: 44px;
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+}
+
+.jumbotron {
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  color: white;
+
+  h3{
+    font-size: 100pt;
+    font-weight: 900;
+  }
+  #subtitle{
+    color: #724721;
+    font-size: 24pt;
+    font-weight: 900;
+  }
+  #percent{
+    color: #bdb28b;
+    font-size: 100pt;
+    font-weight: 900;
+  }
+  #pay{
+    font-size: 24pt;
+    font-weight: 900;
+  }
+}
+
+.container-percent{
+  align-items: center;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.container-buttons{
+  display: flex;
+  gap: 36px;
+}
+

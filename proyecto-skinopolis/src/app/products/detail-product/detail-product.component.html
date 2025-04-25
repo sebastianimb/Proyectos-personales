@@ -1,0 +1,22 @@
+<div class="ps-3">
+  <div class="d-flex gap-3">
+    <button class="btn btn-outline-dark" (click)="backToProduct()">←</button>
+    <h3>{{ titulo }}</h3>
+  </div>
+  <div class="row">
+    <div class="col-lg-4 rounded shadow p-4 mt-4">
+      @for (product of producto.images; track $index) {
+      <img class="img-fluid rounded img-product" [src]="product" />
+      }
+    </div>
+    <div class="col-lg-8">
+      <p class="text-muted">{{ producto.title }}</p>
+      <p>Descripción: {{ producto.description }}</p>
+      <p>Precio: ${{ producto.price }}</p>
+      <p>Marca: {{ producto.brand }}</p>
+      <p>Categorias: {{ producto.category }}</p>
+      <p>Cantidad disponible: {{ producto.stock }}</p>
+      <p>Tags: {{ producto.tags }}</p>
+    </div>
+  </div>
+</div>

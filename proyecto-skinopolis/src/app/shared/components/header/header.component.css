@@ -1,0 +1,21 @@
+#header{
+  padding: 54px 0px 54px 0px ;
+  height: 84px;
+  background-color: #17120a;
+  color: white;
+  line-height: 5px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+#header h1{
+  display: block;
+  font-weight: 800;
+  font-size: 32px;
+}
+.logo-img{
+  img{
+    width: 60px;
+    height: 60px;
+  }
+}

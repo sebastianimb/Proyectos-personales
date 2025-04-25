@@ -1,0 +1,126 @@
+<div class="ps-4">
+  <div class="d-flex gap-3">
+    <button class="btn btn-outline-dark" (click)="backToProduct()">←</button>
+    <h3>{{ titulo }}</h3>
+  </div>
+  <div class="row">
+    <div class="col-lg-4 rounded shadow p-4 mt-4">
+      @for (product of inputProductEdit.images; track $index) {
+      <img class="img-fluid rounded img-product" [src]="product" />
+      }
+    </div>
+    <form
+      class="col-lg-8"
+      #formAddProduct="ngForm"
+      (ngSubmit)="onSubmit(); formAddProduct.reset()"
+      id="productForm"
+    >
+      <div>
+        <label>Titulo</label>
+        <input
+          class="form-control"
+          type="text"
+          name="title"
+          #title="ngModel"
+          [(ngModel)]="inputProductEdit.title"
+          required
+        />
+        @if(title.touched && !title.valid){
+        <span class="badge bg-danger">Campo título no válido.</span>
+        }
+      </div>
+      <div>
+        <label>Descripción</label>
+        <textarea
+          class="form-control"
+          name="description"
+          #description="ngModel"
+          [(ngModel)]="inputProductEdit.description"
+          required
+          rows="3"
+          cols="3"
+        >
+        </textarea>
+        @if(description.touched && !description.valid){
+        <span class="badge bg-danger">Campo descripción no válido.</span>
+        }
+      </div>
+      <div>
+        <label>Categoria</label>
+        <input
+          type="text"
+          class="form-control"
+          name="category"
+          #category="ngModel"
+          [(ngModel)]="inputProductEdit.category"
+          required
+        />
+        @if(category.touched && !category.valid){
+        <span class="badge bg-danger">Campo categoría no válido.</span>
+        }
+      </div>
+      <div>
+        <label>Precio</label>
+        <input
+          class="form-control"
+          type="text"
+          name="price"
+          placeholder="$10"
+          #price="ngModel"
+          [(ngModel)]="inputProductEdit.price"
+          pattern="^[0-9]+(\.[0-9]{1,2})?$"
+          required
+        />
+        @if(price.touched && !price.valid){
+        <span class="badge bg-danger">Campo precio no válido.</span>
+        }
+      </div>
+      <div>
+        <label>Cantidad</label>
+        <input
+          class="form-control"
+          type="text"
+          name="stock"
+          #stock="ngModel"
+          [(ngModel)]="inputProductEdit.stock"
+          pattern="[1-9]+"
+          required
+        />
+        @if(stock.touched && !stock.valid){
+        <span class="badge bg-danger">Campo cantidad no válido.</span>
+        }
+      </div>
+      <div>
+        <label>Marca</label>
+        <input
+          class="form-control"
+          type="text"
+          name="brand"
+          #brand="ngModel"
+          [(ngModel)]="inputProductEdit.brand"
+          required
+        />
+        @if(brand.touched && !brand.valid){
+        <span class="badge bg-danger">Campo marca no válido.</span>
+        }
+      </div>
+      <div>
+        <label>Imagen</label>
+        <input
+          class="form-control"
+          type="file"
+          name="image"
+          required
+          multiple
+          (change)="onFileChange($event)"
+        />
+      </div>
+      <input
+        class="btn btn-lg btn-success mt-3"
+        type="submit"
+        value="{{ titulo }}"
+        [disabled]="!formAddProduct.form.valid"
+      />
+    </form>
+  </div>
+</div>
