@@ -4,13 +4,13 @@
   padding: 16px;
   border-radius: 8px;
   color: #ccc;
-  width: 142px;
+  width: 100px;
   text-align: center;
   cursor: pointer;
 }
 .button:hover{
   color: white;
-  box-shadow: 4px 4px 1px #141414;
+  box-shadow: 4px 4px 4px #141414;
 }
 
 .btn-buy{
@@ -18,7 +18,7 @@
 }
 .btn-buy:hover{
   color: white;
-  box-shadow: 4px 4px 1px #24160a;
+  box-shadow: 4px 4px 4px #24160a;
 }
 
 .btn-sell{
@@ -29,5 +29,10 @@
 .btn-sell:hover{
   color: #bdb28b;
   border:1px solid #bdb28b;
-  box-shadow: 4px 4px 1px #25231c;
+  box-shadow: 4px 4px 4px #25231c;
+}
+
+.btn-rss{
+  padding: 8px !important;
+  width: 28px !important;
 }

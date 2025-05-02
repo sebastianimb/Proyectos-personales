@@ -1,0 +1,9 @@
+.container-rss-icons{
+  display: none;
+}
+
+@media (min-width: 1280px) {
+  .container-rss-icons{
+    display: block;
+  }
+}

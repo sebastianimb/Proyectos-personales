@@ -1,5 +1,6 @@
 #nav{
   background-color: #17120a;
+  display: none;
 }
 #nav ul{
   padding: 0;
@@ -19,9 +20,14 @@
 }
 #nav ul li a:hover{
   transition: background-color 0.5s ease-out;
-  border-radius: 4px;
   background-color: #241c10;
 }
 .active {
   border-bottom: 3px solid #241c10;
+}
+
+@media (min-width: 1280px) {
+  #nav{
+    display: block;
+  }
 }

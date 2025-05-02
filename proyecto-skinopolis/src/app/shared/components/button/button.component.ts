@@ -10,4 +10,12 @@ import { Component, Input } from '@angular/core';
 export class ButtonComponent {
   @Input() routerLink: string = '/';
   @Input() classButton:string = ''
+  @Input() goTo:string = ''
+
+  goToUrl(){
+    if (this.goTo !== '') {
+      window.open(`http://${this.goTo}`, '_blank')
+      return
+    }
+  }
 }

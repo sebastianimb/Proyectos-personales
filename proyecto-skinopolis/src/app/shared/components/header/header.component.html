@@ -1,8 +1,11 @@
 <header id="header" class="col-lg-12">
-  <div class="logo-img">
-    <img src="assets/logo.png" alt="Logo Skinopoly" />
+  <div class="logo-container" [routerLink]="'/home'">
+    <div class="logo-img">
+      <img src="assets/logo.png" alt="Logo Skinopoly" />
+    </div>
+    <div>
+      <h1>SKINOPOLY</h1>
+    </div>
   </div>
-  <div>
-    <h1>SKINOPOLY</h1>
-  </div>
+  <app-rss-icons></app-rss-icons>
 </header>

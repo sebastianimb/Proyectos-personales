@@ -3,19 +3,31 @@
   height: 84px;
   background-color: #17120a;
   color: white;
-  line-height: 5px;
   display: flex;
-  gap: 12px;
   align-items: center;
+  justify-content: space-between;
 }
 #header h1{
   display: block;
   font-weight: 800;
   font-size: 32px;
 }
+.logo-container{
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 .logo-img{
+  display: none;
   img{
     width: 60px;
     height: 60px;
+  }
+}
+
+@media (min-width: 720px) {
+  .logo-img{
+    display: block;
   }
 }
