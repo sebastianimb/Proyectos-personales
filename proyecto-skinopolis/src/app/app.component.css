@@ -1,13 +1,35 @@
 #content{
+  position: relative;
   min-height: 100vh;
+  max-width: 1420px;
   display: flex;
   flex-direction: column;
   background-color: #17120a;
   overflow: hidden;
+  margin: 0 auto;
   padding: 0px 16px 0px 16px ;
+  .container-header{
+    display: flex;
+    justify-content: space-between;
+    gap: 32px;
+    align-items: center;
+    .burger-menu{
+      svg{
+        fill: #724721;
+      }
+    }
+  }
 }
-@media(min-width:720px){
+.burger-menu{
+  cursor: pointer;
+}
+@media (min-width:720px) {
   #content{
-    padding: 0px 24px 0px 24px;
+    .container-header{
+      justify-content: start;
+      .burger-menu{
+        display: none;
+      }
+    }
   }
 }

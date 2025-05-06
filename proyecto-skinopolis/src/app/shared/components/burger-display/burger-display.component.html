@@ -1,0 +1,33 @@
+<section
+  id="burger-display"
+  [ngClass]="{ 'burger-display': true, 'burger-active': burgerActive }"
+>
+  <section id="title-close" class="title-close">
+    <div id="close-icon" class="close-icon" (click)="closeBurger()">✕</div>
+  </section>
+  <nav>
+    <ul id="aside-burger">
+      <a routerLink="/home" routerLinkActive="active">
+        <li>
+          <div class="title">
+            <h1>● INICIO</h1>
+          </div>
+        </li>
+      </a>
+      <a
+        routerLink="/productos"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <li>
+          <div class="title">
+            <h1>● INVENTARIO</h1>
+          </div>
+        </li>
+      </a>
+    </ul>
+  </nav>
+  <div class="rss">
+    <app-rss-icons></app-rss-icons>
+  </div>
+</section>

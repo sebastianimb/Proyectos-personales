@@ -1,3 +1,24 @@
+.container-inventory{
+  background-color: #241c10;
+  color: white;
+  border-radius: 12px;
+  padding: 16px;
+}
+.card{
+  background-color:#ffc8ad;
+  border-radius: 12px;
+  margin-top: 48px;
+  .card-body{
+    text-align: center;
+  }
+  .card-footer{
+    gap: 32px;
+    padding: 16px;
+    background-color: #241c10;
+    display: flex;
+    justify-content: center;
+  }
+}
 .img-container{
   width: 100%;
   overflow: hidden;

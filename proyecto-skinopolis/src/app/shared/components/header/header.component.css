@@ -16,18 +16,23 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 12px;
 }
 .logo-img{
+  align-self: flex-start;
   display: none;
   img{
-    width: 60px;
-    height: 60px;
+    width: 35px;
+    height: 40px;
   }
 }
 
 @media (min-width: 720px) {
   .logo-img{
     display: block;
+  }
+  .title{
+    padding-right: 48px;
   }
 }

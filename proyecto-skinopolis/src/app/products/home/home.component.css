@@ -14,17 +14,15 @@ p,h3{
   position: relative;
   display: flex;
   justify-content: start;
-  flex-direction: column;
   color: white;
   h3{
     font-size: 32pt;
     font-weight: 900;
   }
   #kara-fade{
+    width: 400px;
+    height: 600px;
     display: none;
-    position: absolute;
-    right: 0;
-    bottom: 0;
   }
   #subtitle{
     color: #724721;
@@ -70,39 +68,42 @@ p,h3{
   .jumbotron {
     padding-top: 12px;
     h3{
-      font-size: 80pt;
+      font-size: 75pt;
     }
     #subtitle{
       font-size: 24pt;
     }
     #percent{
-      font-size: 80pt;
+      font-size: 75pt;
     }
     #pay{
       font-size: 24pt;
     }
   }
   .container-percent{
-    padding-top: 4rem !important;
+    padding-top: 3rem !important;
     #percent{
       line-height: 70pt;
     }
   }
   .container-buttons{
-    padding-top: 3rem !important;
+    padding-top: 2rem !important;
   }
 }
 @media(min-width:1280px){
   .jumbotron {
     padding-top: 0px;
     h3{
-      font-size: 100pt;
+      font-size: 75pt;
+    }
+    #kara-fade{
+      display: block;
     }
     #subtitle{
       font-size: 24pt;
     }
     #percent{
-      font-size: 100pt;
+      font-size: 75pt;
     }
     #pay{
       font-size: 24pt;
@@ -114,21 +115,25 @@ p,h3{
     }
   }
 }
-
-/*Media Querys de imagen de cuchillo */
-@media(min-width:1400px){
-  .jumbotron{
-    #kara-fade{
-      bottom: -16px;
-      display: block;
+@media(min-width:1420px){
+  .jumbotron {
+    padding-top: 0px;
+    h3{
+      font-size: 85pt;
+    }
+    #subtitle{
+      font-size: 24pt;
+    }
+    #percent{
+      font-size: 85pt;
+    }
+    #pay{
+      font-size: 24pt;
     }
   }
-}
-@media(min-width:1600px){
-  .jumbotron{
-    #kara-fade{
-      display: block;
-      top: 0;
+  .container-percent{
+    #percent{
+      line-height: 110pt;
     }
   }
 }
