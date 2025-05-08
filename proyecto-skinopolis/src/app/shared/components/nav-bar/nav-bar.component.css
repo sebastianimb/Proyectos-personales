@@ -23,7 +23,7 @@
   background-color: #241c10;
 }
 .active {
-  border-bottom: 3px solid #241c10;
+  border-bottom: 3px solid #ffdc98;
 }
 
 @media (min-width: 720px) {

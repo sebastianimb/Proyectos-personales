@@ -1,24 +1,107 @@
 <div class="container-inventory">
-  <h3>{{ titulo }}</h3>
+  <div class="container-filter">
+    <div class="categories">
+      <button (click)="getProductList()">Todas las armas</button>
+      <select
+        class="select"
+        [(ngModel)]="selectedCategory1"
+        (ngModelChange)="searchForCategory(selectedCategory1)"
+      >
+        <option disabled value="">Cuchillos</option>
+        <option value="knife">Cuchillos</option>
+        <option value="bowie">Bowie</option>
+      </select>
+      <select
+        [(ngModel)]="selectedCategory2"
+        (ngModelChange)="searchForCategory(selectedCategory2)"
+      >
+        <option disabled value="">Pistolas</option>
+        <option value="pistols">Pistolas</option>
+        <option value="usp">Usp</option>
+      </select>
+      <select
+        [(ngModel)]="selectedCategory3"
+        (ngModelChange)="searchForCategory(selectedCategory3)"
+      >
+        <option disabled value="">Rifles</option>
+        <option value="rifle">Rifles</option>
+        <option value="ak-47">Ak-47</option>
+        <option value="m4a1-s">M4a1-s</option>
+      </select>
+      <select
+        [(ngModel)]="selectedCategory4"
+        (ngModelChange)="searchForCategory(selectedCategory4)"
+      >
+        <option disabled value="">Francotiradores</option>
+        <option value="sniper">Francotiradores</option>
+        <option value="awp">Awp</option>
+      </select>
+      <select
+        [(ngModel)]="selectedCategory5"
+        (ngModelChange)="searchForCategory(selectedCategory5)"
+      >
+        <option disabled value="">Agentes</option>
+        <option value="agents">Agentes</option>
+      </select>
+    </div>
+    <div class="search pt-5">
+      <input
+        class="form-control"
+        type="text"
+        placeholder="¿Qué skins estás buscando?"
+        name="title"
+        #title="ngModel"
+        [(ngModel)]="search"
+        (ngModelChange)="searchChange()"
+      />
+      <label class="d-flex align-items-center justify-content-center"
+        ><ng-icon name="biSearch"
+      /></label>
+      @if(title.touched && !title.valid){
+      <span class="badge bg-danger">Campo título no válido.</span>
+      }
+    </div>
+  </div>
   <div class="row">
-    @if (productList.length<=0) {
-    <div>Cargando listado...</div>
-    } @else { @for (product of productList; track product.id) {
+    @if (productListFiltered.length<=0) {
+    <div class="pt-4">No se han encontrado productos...</div>
+    } @else { @for (product of productListFiltered; track product.id) {
     <div class="col-lg-4">
       <div class="card img-container">
-        @if (product.images) {
-        <img class="img-fluid rounded img-product" [src]="product.images[0]" />
+        @if (product.img) {
+        <img class="img-fluid rounded img-product" [src]="product.img" />
         } @else {
         <div class="img-filling"></div>
         }
         <div class="card-body">
-          <strong>{{ product.title }}</strong>
-          <p>${{ product.price }}</p>
+          <div class="card-title">
+            <p>
+              <strong
+                >{{
+                  product.gun.includes("knife")
+                    ? "★"
+                    : product.gun.toLocaleUpperCase() + " |"
+                }}
+                {{ product.name }}</strong
+              >
+            </p>
+            @if (product.phase) {
+            <p><strong>Phase:</strong> {{ product.phase }}</p>
+            }
+            <p><strong>Exterior:</strong> {{ product.exterior }}</p>
+          </div>
+          <p><strong>Float:</strong> {{ product.float }}</p>
         </div>
         <div class="card-footer">
-          <app-button classButton="btn btn-inventory">Inspeccionar</app-button>
-          <app-button classButton="btn btn-inventory-negative"
-            >Comprar</app-button
+          <app-button
+            [goTo]="product.inspect"
+            classButton="btn btn-inventory d-flex align-items-center justify-content-center gap-1"
+            ><ng-icon name="biSearch" /> Inspeccionar</app-button
+          >
+          <app-button
+            [goTo]="product.chatWspUrl"
+            classButton="btn btn-inventory-buy d-flex align-items-center justify-content-center gap-1"
+            ><ng-icon class="icon" name="biCart" />Comprar</app-button
           >
         </div>
       </div>

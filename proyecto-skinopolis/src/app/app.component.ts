@@ -10,6 +10,8 @@ import { BurgerDisplayComponent } from './shared/components/burger-display/burge
 const allBootstrapIcons = {
   biInstagram: BootstrapIcons.bootstrapInstagram,
   biSteam: BootstrapIcons.bootstrapSteam,
+  biSearch: BootstrapIcons.bootstrapSearch,
+  biCart: BootstrapIcons.bootstrapCart2,
 };
 
 @Component({

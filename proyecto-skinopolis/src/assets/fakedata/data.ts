@@ -1,0 +1,56 @@
+import { Product } from '../../app/core/models/product.model';
+export const inventory: Product[] = [
+  {
+    id: 1,
+    category: ['rifle', 'ak-47'],
+    name: 'BLOODSPORT',
+    gun: 'ak-47',
+    exterior: 'MW',
+    float: 0.092565887,
+    img: 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_ak47_gs_ak47_bloodsport_light_large.40f076f6b92e08acc37860923533aa9768795b2b.png',
+    pattern: 564,
+    chatWspUrl: 'https://wa.link/5qcz9o',
+    inspect:
+      'steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199623985210A43685493693D4624785738584589073',
+  },
+  {
+    id: 2,
+    name: 'ASIIMOV',
+    category: ['sniper', 'awp'],
+    gun: 'awp',
+    exterior: 'FT',
+    float: 0.308932096,
+    chatWspUrl: 'https://wa.link/uh51u1',
+    img: 'https://community.fastly.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAR17PLfYQJD_9W7m5a0mvLwOq7c2DMBupQn2eqVotqkiwHiqhdlMmigJtOWJwE5Zw3X8wS-yea8jcDo7c7XiSw0g89L9us/360fx360f',
+    pattern: 403,
+    inspect:
+      'steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199623985210A43701408766D3182009476390354473',
+  },
+  {
+    id: 3,
+    category: ['rifle', 'm4a1-s'],
+    name: 'PLAYER TWO',
+    gun: 'm4a1-s',
+    exterior: 'MW',
+    float: 0.109717555,
+    img: 'https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_m4a1_silencer_cu_m4a1s_csgo2048_light_large.6531225ca224416df4dc6aa12c6ecea582b1e110.png',
+    chatWspUrl: 'https://wa.link/2tqdyc',
+    pattern: 884,
+    inspect:
+      'steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199623985210A43701407948D3359756010839716768',
+  },
+  {
+    id: 4,
+    category: ['knife', 'bowie'],
+    name: 'Bowie | Doppler',
+    gun: 'knife',
+    phase: 2,
+    exterior: 'FN',
+    float: 0.027672233,
+    chatWspUrl: 'https://wa.link/83otag',
+    img: 'https://cs2-cdn.pricempire.com/panorama/images/econ/default_generated/weapon_knife_survival_bowie_am_doppler_phase2_light_png.png',
+    pattern: 174,
+    inspect:
+      'steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561199623985210A43721305205D2504182230921415292',
+  },
+];

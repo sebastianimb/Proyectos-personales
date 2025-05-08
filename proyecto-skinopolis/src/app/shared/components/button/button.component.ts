@@ -3,19 +3,27 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'app-button',
   imports: [],
-  standalone:true,
+  standalone: true,
   templateUrl: './button.component.html',
-  styleUrl: './button.component.css'
+  styleUrl: './button.component.css',
 })
 export class ButtonComponent {
   @Input() routerLink: string = '/';
-  @Input() classButton:string = ''
-  @Input() goTo:string = ''
+  @Input() classButton: string = '';
+  @Input() goTo: string = '';
 
-  goToUrl(){
+  goToUrl() {
     if (this.goTo !== '') {
-      window.open(`http://${this.goTo}`, '_blank')
-      return
+      if (this.goTo.includes('steam://')) {
+        window.open(`${this.goTo}`);
+        return;
+      }
+      if (this.goTo.includes('http://') || this.goTo.includes('https://')) {
+        window.open(`${this.goTo}`);
+        return;
+      }
+      window.open(`http://${this.goTo}`, '_blank');
+      return;
     }
   }
 }

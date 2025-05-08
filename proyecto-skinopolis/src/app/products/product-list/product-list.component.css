@@ -1,21 +1,109 @@
 .container-inventory{
-  background-color: #241c10;
+  background-color: #332a1c;
+  border-top: 1px solid #ffdc98;
+  border-bottom: 1px solid #ffdc98;
   color: white;
   border-radius: 12px;
-  padding: 16px;
+  padding: 24px;
+}
+.container-filter{
+  display: block;
+  .categories{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap:16px;
+    button{
+      padding: 8px;
+      color:#ffdc98;
+      border: none;
+      appearance: none;
+      background-color: transparent;
+      border-radius: 4px;
+      background-color: #0a0a0a;
+      border-bottom: 1px solid #ffdc98;
+    }
+    select{
+      padding: 8px;
+      color:#ffdc98;
+      border-radius: 4px;
+      background-color: #0a0a0a;
+      border: 0;
+      border-bottom: 1px solid #ffdc98;
+    }
+    select::after {
+      content: '▼';
+      position: absolute;
+      right: 8px;
+      pointer-events: none;
+    }
+    option:disabled {
+      text-decoration: line-through;
+      color: gray;
+    }
+  }
+}
+.search{
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding-left: 16px;
+  label{
+    color: #ffdc98;
+  }
+  input{
+    color:#ffdc98;
+    appearance: none;
+    outline: none !important;
+    width: 100%;
+    border-radius: 0;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid #ffdc98;
+  }
+  input::placeholder {
+    color:#ffdc98;
+  }
+  input:focus{
+    appearance: none;
+    outline: none;
+    box-shadow: none;
+  }
 }
 .card{
-  background-color:#ffc8ad;
+  min-height: 490px;
+  background: linear-gradient(
+  180deg,
+  #0a0a0a 40%,
+  #1a1a1a 70%,
+  #ffdc98 100%
+  );
+  border: none;
+  border-top: 1px solid #ffdc98;
   border-radius: 12px;
   margin-top: 48px;
+  color: white;
   .card-body{
+    color: gray;
+    background-color: #26262617;
+    border-radius: 12px;
+    margin: 16px;
+    border-radius: 12px;
     text-align: center;
+    .card-title{
+      p:first-child {
+        color: #e3d6c1;
+      }
+    }
   }
   .card-footer{
-    gap: 32px;
+    flex-wrap: wrap;
+    gap: 24px;
     padding: 16px;
-    background-color: #241c10;
+    background-color: #e3d6c1;
     display: flex;
+    flex-direction: column;
     justify-content: center;
   }
 }
@@ -24,6 +112,7 @@
   overflow: hidden;
 }
 .img-product{
+  padding: 16px;
   display: block;
   margin: 0 auto;
   height: 200px;
@@ -32,4 +121,17 @@
   width: 100%;
   height: 200px;
   background-color: #ccc;
+}
+
+@media (min-width:720px){
+  .container-filter{
+    .categories{
+      flex-direction: row;
+    }
+  }
+  .search{
+    input{
+      width: 25%;
+    }
+  }
 }

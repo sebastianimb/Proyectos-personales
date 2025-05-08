@@ -18,18 +18,20 @@
     .close-icon{
       cursor: pointer;
       font-size: 30pt;
-      color:#bdb28b;
+      color:#ffdc98;
     }
   }
 
   .title{
     font-size: 30pt;
     text-decoration: none;
-    color: #bdb28b;
+    color: #e7c889;
+    border-bottom: 1px solid #e7c889;
   }
   .title:hover{
-    transition: color 0.5s ease-out;
-    color: #724721;
+    transition: color 0.5s ease-out, border 0.5s ease-out;
+    color: #ffdc98;
+    border-bottom: 1px solid #ffdc98;
   }
 
   a{
@@ -41,6 +43,7 @@
   }
 
   ul{
+    padding: 0px;
     display: flex;
     flex-direction: column;
     gap:32px;
