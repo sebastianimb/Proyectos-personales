@@ -1,5 +1,5 @@
 .container-inventory{
-  background-color: #332a1c;
+  background-color: #ffffff03;
   border-top: 1px solid #ffdc98;
   border-bottom: 1px solid #ffdc98;
   color: white;
@@ -25,12 +25,11 @@
       border-bottom: 1px solid #ffdc98;
     }
     select{
-      padding: 8px;
+      padding: 12px;
       color:#ffdc98;
       border-radius: 4px;
       background-color: #0a0a0a;
       border: 0;
-      border-bottom: 1px solid #ffdc98;
     }
     select::after {
       content: '▼';
@@ -83,13 +82,13 @@
   border-top: 1px solid #ffdc98;
   border-radius: 12px;
   margin-top: 48px;
-  color: white;
+  color: #e3d6c1;
   .card-body{
-    color: gray;
+    color: #a3a3a3;
+    padding: 12px 0px 0px 0px;
     background-color: #26262617;
-    border-radius: 12px;
-    margin: 16px;
-    border-radius: 12px;
+    margin: 16px 16px 0 16px;
+    border-radius: 12px 12px 0px 0px;
     text-align: center;
     .card-title{
       p:first-child {
@@ -101,11 +100,41 @@
     flex-wrap: wrap;
     gap: 24px;
     padding: 16px;
-    background-color: #e3d6c1;
+    background-color: #0a0a0a;
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
+}
+.card-classified{
+  background: linear-gradient(
+  330deg,
+  #0a0a0a 40%,
+  #1a1a1a 70%,
+  #791b1b 100%
+  );
+  border: none;
+  border-top: 1px solid #ff9898;
+}
+.card-restricted{
+  background: linear-gradient(
+  330deg,
+  #0a0a0a 40%,
+  #1a1a1a 70%,
+  #791b4f 100%
+  );
+  border: none;
+  border-top: 1px solid #ff85fd;
+}
+.card-extremely{
+  background: linear-gradient(
+  330deg,
+  #0a0a0a 40%,
+  #1a1a1a 70%,
+  #59481b 100%
+  );
+  border: none;
+  border-top: 1px solid #ffce85;
 }
 .img-container{
   width: 100%;
@@ -122,7 +151,9 @@
   height: 200px;
   background-color: #ccc;
 }
-
+.no-product{
+  min-height: 50vh;
+}
 @media (min-width:720px){
   .container-filter{
     .categories{

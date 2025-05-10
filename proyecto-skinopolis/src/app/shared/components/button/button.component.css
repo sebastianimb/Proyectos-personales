@@ -37,14 +37,14 @@
 .btn-inventory{
   width: 100% !important;
   box-sizing: border-box;
-  border:1px solid #724721;
-  color: #724721;
+  border:1px solid #bdb28b;
+  color: #bdb28b;
 }
 
 .btn-inventory:hover{
-  color: #24160a;
-  border:1px solid #24160a;
-  box-shadow: 0px 0px 0px #24160a;
+  color: #e7c889;
+  border:1px solid #e7c889;
+  box-shadow: 0px 0px 0px #e7c889;
 }
 
 .btn-inventory-buy{
