@@ -21,8 +21,6 @@ export class ProductListComponent {
   selectedCategory1 = '';
   selectedCategory2 = '';
   selectedCategory3 = '';
-  selectedCategory4 = '';
-  selectedCategory5 = '';
 
   constructor(private _ProvProductService: ProductService) {}
 
@@ -48,7 +46,5 @@ export class ProductListComponent {
     this.selectedCategory1 = this.selectedCategory1 === search ? search : '';
     this.selectedCategory2 = this.selectedCategory2 === search ? search : '';
     this.selectedCategory3 = this.selectedCategory3 === search ? search : '';
-    this.selectedCategory4 = this.selectedCategory4 === search ? search : '';
-    this.selectedCategory5 = this.selectedCategory5 === search ? search : '';
   }
 }
