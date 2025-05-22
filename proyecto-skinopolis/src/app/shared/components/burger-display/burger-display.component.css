@@ -14,24 +14,23 @@
     display: flex;
     justify-content: end;
     width: 100%;
-    background-color: #241c10;
     .close-icon{
       cursor: pointer;
       font-size: 30pt;
-      color:#ffdc98;
+      color:#ffd7c3;
     }
   }
 
   .title{
     font-size: 30pt;
     text-decoration: none;
-    color: #e7c889;
-    border-bottom: 1px solid #e7c889;
+    color: #ffd7c3;
+    border-bottom: 1px solid #ffd7c3;
   }
   .title:hover{
     transition: color 0.5s ease-out, border 0.5s ease-out;
-    color: #ffdc98;
-    border-bottom: 1px solid #ffdc98;
+    color: #ff3c00;
+    border-bottom: 1px solid #ff3c00;
   }
 
   a{

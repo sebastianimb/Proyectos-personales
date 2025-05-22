@@ -1,9 +1,12 @@
+p{
+  margin: 0 !important;
+}
 #content{
   position: relative;
-  min-height: 100vh;
+  min-height: 100dvh;
   max-width: 1420px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
   background-color: #17120a;
   overflow: hidden;
   margin: 0 auto;
@@ -15,7 +18,7 @@
     align-items: center;
     .burger-menu{
       svg{
-        fill: #ffdc98;
+        fill: #952300;
       }
     }
   }

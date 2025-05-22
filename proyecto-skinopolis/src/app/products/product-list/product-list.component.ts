@@ -30,6 +30,9 @@ export class ProductListComponent {
   }
   getProductList() {
     this.productListFiltered = [...this.productList];
+    this.selectedCategory1 = '';
+    this.selectedCategory2 = '';
+    this.selectedCategory3 = '';
   }
   searchChange() {
     this.productListFiltered = this.productList.filter((product) => {

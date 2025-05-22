@@ -7,7 +7,7 @@
         [(ngModel)]="selectedCategory1"
         (ngModelChange)="searchForCategory(selectedCategory1)"
       >
-        <option disabled value="">Cuchillos</option>
+        <option selected disabled value="">Cuchillos</option>
         <option value="knife">Cuchillos</option>
         <option value="bowie">Bowie</option>
       </select>
@@ -15,7 +15,7 @@
         [(ngModel)]="selectedCategory2"
         (ngModelChange)="searchForCategory(selectedCategory2)"
       >
-        <option disabled value="">Rifles</option>
+        <option selected disabled value="">Rifles</option>
         <option value="rifle">Rifles</option>
         <option value="ak-47">Ak-47</option>
         <option value="m4a1-s">M4a1-s</option>
@@ -24,7 +24,7 @@
         [(ngModel)]="selectedCategory3"
         (ngModelChange)="searchForCategory(selectedCategory3)"
       >
-        <option disabled value="">Francotiradores</option>
+        <option selected disabled value="">Francotiradores</option>
         <option value="sniper">Francotiradores</option>
         <option value="awp">Awp</option>
       </select>
@@ -67,15 +67,13 @@
                     ? "★"
                     : product.gun.toLocaleUpperCase() + " |"
                 }}
-                {{ product.name }}</strong
+                {{ product.name }}
+                {{ product.phase ? "P" + product.phase : "" }}</strong
               >
             </p>
           </div>
-          @if (product.phase) {
-          <p><strong>Phase:</strong> {{ product.phase }}</p>
-          }
-          <p><strong>Exterior:</strong> {{ product.exterior }}</p>
-          <p><strong>Float:</strong> {{ product.float }}</p>
+          <p>{{ product.exterior }}</p>
+          <p>{{ product.float }}</p>
         </div>
         <div class="card-footer">
           <app-button

@@ -8,43 +8,70 @@
   text-align: center;
   cursor: pointer;
 }
+.button p{
+  margin: 0;
+}
 .button:hover{
   color: white;
   box-shadow: 4px 4px 4px #141414;
 }
 
-.btn-buy{
-  background-color: #e7c889;
-  color: #24160a;
+.btn-hero{
+  background-color: #952300;
+  position: relative;
 }
-.btn-buy:hover{
-  color: #24160a;
-  background-color: #ffdc98;
+.btn-hero:hover{
+  background-color: #ff3c00;
   box-shadow: 0px 0px 0px #24160a;
 }
-
-.btn-sell{
-  border:1px solid #724721;
-  color: #724721;
+.btn-hero p{
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  color: #fff3c7;
 }
-
-.btn-sell:hover{
-  color: #bdb28b;
-  border:1px solid #ffdc98;
-  box-shadow: 4px 4px 4px #25231c;
+@property --angle{
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+.btn-hero::after {
+  --angle: 0deg;
+  top: -4px;
+  left: -4px;
+  content: '';
+  position: absolute;
+  height: calc(100% + 8px);
+  width: calc(100% + 8px);
+  background-image: conic-gradient(from var(--angle),transparent 70%,#fff3c7);
+  z-index: -1;
+  border-radius: 8px;
+  animation: 4s spin linear infinite;
+}
+.btn-hero::before{
+  filter: blur(1.5rem);
+  opacity: 0.5;
+}
+@keyframes spin{
+  from{
+    --angle:0deg;
+  }
+  to{
+    --angle:360deg;
+  }
 }
 
 .btn-inventory{
   width: 100% !important;
   box-sizing: border-box;
-  border:1px solid #bdb28b;
-  color: #bdb28b;
+  border:1px solid #ffd7c3;
+  color: #ffd7c3;
 }
 
 .btn-inventory:hover{
-  color: #e7c889;
-  border:1px solid #e7c889;
-  box-shadow: 0px 0px 0px #e7c889;
+  color: #fce6da;
+  border:1px solid #fce6da;
+  box-shadow: 0px 0px 0px #fce6da;
 }
 
 .btn-inventory-buy{
@@ -60,7 +87,15 @@
 }
 
 .btn-rss{
+  border:1px solid #ffd7c3;
+  color: #ffd7c3;
   align-items: center;
   padding: 8px !important;
   width: 125px !important;
 }
+.btn-rss:hover{
+  color: #ffd7c3;
+  border:1px solid #ffd7c3;
+  box-shadow: 4px 4px 4px #25231c;
+}
+

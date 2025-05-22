@@ -1,20 +1,27 @@
 <div class="col-lg-12 rounded jumbotron">
-  <div>
-    <h3 id="title">VENDE O COMPRA SKINS DE CS2</h3>
-    <p id="subtitle" class="pt-2">
+  <div #hero>
+    <h3 #title id="title">VENDE O COMPRA SKINS DE CS2</h3>
+    <p #subtitle id="subtitle" class="pt-2">
       Compramos tus skins al mejor precio del mercado.
     </p>
-    <div class="pt-4 container-percent">
-      <p id="percent">86-90%</p>
-      <p id="pay" class="pt-2">Pagos en Chile, Argentina y Brasil.</p>
+    <div class="pt-4 container-pay">
+      <p id="pay">Pagos en Chile, Argentina y Brasil.</p>
     </div>
     <div class="container-buttons pt-4">
-      <app-button routerLink="/productos" classButton="btn-buy"
+      <app-button
+        #inventoryBotton
+        routerLink="/productos"
+        classButton="btn-hero"
         >Revisa nuestro inventario</app-button
       >
     </div>
   </div>
   <div>
-    <img id="kara-fade" src="assets/kara-fade.png" alt="Logo Skinopoly" />
+    <img
+      #karambit
+      id="kara-fade"
+      src="assets/kara-fade.png"
+      alt="Logo Skinopoly"
+    />
   </div>
 </div>

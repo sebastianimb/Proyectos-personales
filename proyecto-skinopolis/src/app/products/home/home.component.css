@@ -5,19 +5,17 @@ p,h3{
   display: flex;
   gap: 25px;
 }
-.container-percent{
-  #percent{
-    line-height: 30pt;
-  }
-}
 .jumbotron{
   position: relative;
   display: flex;
   justify-content: start;
-  color: white;
+  color: #ffd7c3;
   h3{
     font-size: 32pt;
     font-weight: 900;
+    background-image: linear-gradient(240deg, white, #ffbf92);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
   #kara-fade{
     width: 400px;
@@ -25,7 +23,7 @@ p,h3{
     display: none;
   }
   #subtitle{
-    color: #ffdc98;
+    color: #ff3c00;
     font-size: 12pt;
     font-weight: 900;
   }
@@ -55,7 +53,7 @@ p,h3{
       font-size: 16pt;
     }
   }
-  .container-percent{
+  .container-pay{
     #percent{
       line-height: 50pt;
     }
@@ -80,8 +78,8 @@ p,h3{
       font-size: 24pt;
     }
   }
-  .container-percent{
-    padding-top: 3rem !important;
+  .container-pay{
+    padding-top: 4rem !important;
     #percent{
       line-height: 70pt;
     }
@@ -109,11 +107,6 @@ p,h3{
       font-size: 24pt;
     }
   }
-  .container-percent{
-    #percent{
-      line-height: 110pt;
-    }
-  }
 }
 @media(min-width:1420px){
   .jumbotron {
@@ -129,11 +122,6 @@ p,h3{
     }
     #pay{
       font-size: 24pt;
-    }
-  }
-  .container-percent{
-    #percent{
-      line-height: 110pt;
     }
   }
 }

@@ -1,10 +1,10 @@
 .container-inventory{
   background-color: #ffffff03;
-  border-top: 1px solid #ffdc98;
-  border-bottom: 1px solid #ffdc98;
+  border-top: 1px solid #ff3c00;
+  border-bottom: 1px solid #ff3c00;
   color: white;
   border-radius: 12px;
-  padding: 24px;
+  padding: 24px 42px 24px 42px;
 }
 .container-filter{
   display: block;
@@ -13,33 +13,28 @@
     flex-direction: column;
     justify-content: center;
     flex-wrap: wrap;
-    gap:16px;
     button{
-      padding: 8px;
-      color:#ffdc98;
+      padding: 16px 32px 16px 32px;
+      color:#ffd7c3;
       border: none;
       appearance: none;
       background-color: transparent;
-      border-radius: 4px;
-      background-color: #0a0a0a;
-      border-bottom: 1px solid #ffdc98;
+      background-color: #050505;
     }
     select{
-      padding: 12px;
-      color:#ffdc98;
-      border-radius: 4px;
+      padding: 16px 32px 16px 32px;
+      color:#ffd7c3;
       background-color: #0a0a0a;
       border: 0;
+      option:disabled {
+      display: none;
+      }
     }
     select::after {
       content: '▼';
       position: absolute;
       right: 8px;
       pointer-events: none;
-    }
-    option:disabled {
-      text-decoration: line-through;
-      color: gray;
     }
   }
 }
@@ -49,20 +44,20 @@
   gap: 8px;
   padding-left: 16px;
   label{
-    color: #ffdc98;
+    color: #ffd7c3;
   }
   input{
-    color:#ffdc98;
+    color:#ffd7c3;
     appearance: none;
     outline: none !important;
     width: 100%;
     border-radius: 0;
     background-color: transparent;
     border: 0;
-    border-bottom: 1px solid #ffdc98;
+    border-bottom: 1px solid #ffd7c3;
   }
   input::placeholder {
-    color:#ffdc98;
+    color:#ffd7c3;
   }
   input:focus{
     appearance: none;
@@ -74,20 +69,19 @@
   min-height: 490px;
   background: linear-gradient(
   180deg,
-  #0a0a0a 40%,
+  #0000 40%,
   #1a1a1a 70%,
-  #ffdc98 100%
+  #ff3c00 100%
   );
   border: none;
-  border-top: 1px solid #ffdc98;
+  border-top: 1px solid #ff3c00;
   border-radius: 12px;
-  margin-top: 48px;
-  color: #e3d6c1;
+  margin-top: 32px;
+  color: #ffd7c3;
   .card-body{
     color: #a3a3a3;
     padding: 12px 0px 0px 0px;
     background-color: #26262617;
-    margin: 16px 16px 0 16px;
     border-radius: 12px 12px 0px 0px;
     text-align: center;
     .card-title{
@@ -109,7 +103,7 @@
 .card-classified{
   background: linear-gradient(
   330deg,
-  #0a0a0a 40%,
+  #0000 40%,
   #1a1a1a 70%,
   #791b1b 100%
   );
@@ -119,7 +113,7 @@
 .card-restricted{
   background: linear-gradient(
   330deg,
-  #0a0a0a 40%,
+  #0000 40%,
   #1a1a1a 70%,
   #791b4f 100%
   );
@@ -129,7 +123,7 @@
 .card-extremely{
   background: linear-gradient(
   330deg,
-  #0a0a0a 40%,
+  #0000 40%,
   #1a1a1a 70%,
   #59481b 100%
   );
