@@ -1,128 +1,128 @@
-p,h3{
+p,
+h3 {
   margin: 0;
 }
-.container-buttons{
+.container-buttons {
   display: flex;
   gap: 25px;
 }
-.jumbotron{
+.jumbotron {
   position: relative;
   display: flex;
   justify-content: start;
   color: #ffd7c3;
-  h3{
-    font-size: 32pt;
+  h3 {
+    font-size: 48pt;
     font-weight: 900;
-    background-image: linear-gradient(240deg, white, #ffbf92);
+    background-image: linear-gradient(240deg, white, #ffb192);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-  #kara-fade{
+  #kara-fade {
     width: 400px;
     height: 600px;
     display: none;
   }
-  #subtitle{
+  #subtitle {
     color: #ff3c00;
     font-size: 12pt;
     font-weight: 900;
   }
-  #percent{
+  #percent {
     color: #bdb28b;
     font-size: 32pt;
     font-weight: 900;
   }
-  #pay{
+  #pay {
     font-size: 12pt;
     font-weight: 900;
   }
 }
-@media(min-width:400px){
+@media (min-width: 400px) {
   .jumbotron {
-    h3{
-      font-size: 50pt;
+    h3 {
+      font-size: 64pt;
       font-weight: 900;
     }
-    #subtitle{
+    #subtitle {
       font-size: 16pt;
     }
-    #percent{
+    #percent {
       font-size: 50pt;
     }
-    #pay{
+    #pay {
       font-size: 16pt;
     }
   }
-  .container-pay{
-    #percent{
+  .container-pay {
+    #percent {
       line-height: 50pt;
     }
   }
-  .container-buttons{
+  .container-buttons {
     gap: 36px;
   }
 }
-@media(min-width:720px){
+@media (min-width: 720px) {
   .jumbotron {
     padding-top: 12px;
-    h3{
-      font-size: 75pt;
+    h3 {
+      font-size: 80pt;
     }
-    #subtitle{
+    #subtitle {
       font-size: 24pt;
     }
-    #percent{
+    #percent {
       font-size: 75pt;
     }
-    #pay{
+    #pay {
       font-size: 24pt;
     }
   }
-  .container-pay{
+  .container-pay {
     padding-top: 4rem !important;
-    #percent{
+    #percent {
       line-height: 70pt;
     }
   }
-  .container-buttons{
+  .container-buttons {
     padding-top: 2rem !important;
   }
 }
-@media(min-width:1280px){
+@media (min-width: 1280px) {
   .jumbotron {
     padding-top: 0px;
-    h3{
+    h3 {
       font-size: 75pt;
     }
-    #kara-fade{
+    #kara-fade {
       display: block;
     }
-    #subtitle{
+    #subtitle {
       font-size: 24pt;
     }
-    #percent{
+    #percent {
       font-size: 75pt;
     }
-    #pay{
+    #pay {
       font-size: 24pt;
     }
   }
 }
-@media(min-width:1420px){
+@media (min-width: 1420px) {
   .jumbotron {
     padding-top: 0px;
-    h3{
+    h3 {
       font-size: 85pt;
     }
-    #subtitle{
+    #subtitle {
       font-size: 24pt;
     }
-    #percent{
+    #percent {
       font-size: 85pt;
     }
-    #pay{
+    #pay {
       font-size: 24pt;
     }
   }
 }
-

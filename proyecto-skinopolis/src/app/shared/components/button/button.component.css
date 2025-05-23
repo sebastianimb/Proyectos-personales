@@ -8,8 +8,11 @@
   text-align: center;
   cursor: pointer;
 }
-.button p{
+.button div{
   margin: 0;
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 .button:hover{
   color: white;
@@ -24,7 +27,7 @@
   background-color: #ff3c00;
   box-shadow: 0px 0px 0px #24160a;
 }
-.btn-hero p{
+.btn-hero div{
   position: relative;
   z-index: 2;
   margin: 0;

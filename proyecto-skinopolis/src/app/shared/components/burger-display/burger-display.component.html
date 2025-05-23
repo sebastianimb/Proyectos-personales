@@ -7,7 +7,7 @@
   </section>
   <nav>
     <ul id="aside-burger">
-      <a routerLink="/home" routerLinkActive="active">
+      <a (click)="closeBurger()" routerLink="/home" routerLinkActive="active">
         <li>
           <div class="title">
             <h1>INICIO</h1>
@@ -15,6 +15,7 @@
         </li>
       </a>
       <a
+        (click)="closeBurger()"
         routerLink="/productos"
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"

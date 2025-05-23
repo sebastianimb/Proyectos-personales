@@ -1,13 +1,7 @@
-import {
-  Component,
-  OnInit,
-  ElementRef,
-  ViewChild,
-  AfterViewInit,
-} from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ButtonComponent } from '../../shared/components/button/button.component';
-import { animate, createSpring, createTimeline, stagger } from 'animejs';
+import { createTimeline } from 'animejs';
 
 @Component({
   selector: 'app-home',

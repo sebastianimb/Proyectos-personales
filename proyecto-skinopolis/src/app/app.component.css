@@ -1,36 +1,49 @@
-p{
+p {
   margin: 0 !important;
 }
-#content{
+#content {
   position: relative;
   min-height: 100dvh;
   max-width: 1420px;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  background-color: #17120a;
+  background-color: #0a0a0a;
   overflow: hidden;
   margin: 0 auto;
-  padding: 0px 16px 0px 16px ;
-  .container-header{
+  padding: 0px 16px 0px 16px;
+  .container-header {
     display: flex;
     justify-content: space-between;
     gap: 32px;
     align-items: center;
-    .burger-menu{
-      svg{
+    .burger-menu {
+      svg {
         fill: #952300;
       }
     }
   }
 }
-.burger-menu{
+.page-transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  /* Puedes añadir una transformación inicial si quieres un efecto diferente, ej: */
+  /* transform: scaleY(0); transform-origin: top; */
+}
+.burger-menu {
   cursor: pointer;
 }
-@media (min-width:720px) {
-  #content{
-    .container-header{
+@media (min-width: 720px) {
+  #content {
+    .container-header {
       justify-content: start;
-      .burger-menu{
+      .burger-menu {
         display: none;
       }
     }

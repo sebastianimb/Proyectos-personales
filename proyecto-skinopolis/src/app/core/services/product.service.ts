@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Product } from '../models/product.model';
 import { GLOBAL } from './global';
-import { inventory } from '../../../assets/fakedata/data';
+import { inventory } from '../../../assets/itemsdata/data';
 interface ProductsResponse {
   products: Product[];
   total: number;

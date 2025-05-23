@@ -1,36 +1,35 @@
-#header{
-  padding: 54px 0px 54px 0px ;
+#header {
+  padding: 54px 0px 54px 0px;
   height: 84px;
-  background-color: #17120a;
   color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-#header h1{
+#header h1 {
   display: block;
   font-weight: 800;
   font-size: 32px;
 }
-.logo-container{
+.logo-container {
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.logo-img{
+.logo-img {
   display: none;
-  img{
+  img {
     width: 50px;
     height: 55px;
   }
 }
 
 @media (min-width: 720px) {
-  .logo-img{
+  .logo-img {
     display: block;
   }
-  .title{
+  .title {
     padding-right: 48px;
   }
 }

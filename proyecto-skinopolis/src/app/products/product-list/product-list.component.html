@@ -1,71 +1,65 @@
 <div class="container-inventory">
-  <div class="container-filter">
-    <div class="categories pt-3">
-      <button (click)="getProductList()">Todas las armas</button>
-      <select
-        class="select"
-        [(ngModel)]="selectedCategory1"
-        (ngModelChange)="searchForCategory(selectedCategory1)"
-      >
-        <option selected disabled value="">Cuchillos</option>
-        <option value="knife">Cuchillos</option>
-        <option value="bowie">Bowie</option>
-      </select>
-      <select
-        [(ngModel)]="selectedCategory2"
-        (ngModelChange)="searchForCategory(selectedCategory2)"
-      >
-        <option selected disabled value="">Rifles</option>
-        <option value="rifle">Rifles</option>
-        <option value="ak-47">Ak-47</option>
-        <option value="m4a1-s">M4a1-s</option>
-      </select>
-      <select
-        [(ngModel)]="selectedCategory3"
-        (ngModelChange)="searchForCategory(selectedCategory3)"
-      >
-        <option selected disabled value="">Francotiradores</option>
-        <option value="sniper">Francotiradores</option>
-        <option value="awp">Awp</option>
-      </select>
-    </div>
-    <div class="search pt-5">
-      <input
-        class="form-control"
-        type="text"
-        placeholder="Buscar por skin..."
-        name="title"
-        #title="ngModel"
-        [(ngModel)]="search"
-        (ngModelChange)="searchChange()"
-      />
-      <label class="d-flex align-items-center justify-content-center"
-        ><ng-icon name="biSearch"
-      /></label>
-      @if(title.touched && !title.valid){
-      <span class="badge bg-danger">Campo título no válido.</span>
-      }
+  <div class="categories-mobile">
+    <div class="wrapper-categories-mobile" (click)="showFilters()">
+      <ng-icon class="icon" name="biFunnel" />
+      <p>{{ isFilterOpen ? "Cerrar Filtros" : "Filtrar" }}</p>
     </div>
   </div>
-  <div class="row pt-4">
+  <div [ngClass]="{ 'categories-display': isFilterOpen }" class="categories">
+    <button (click)="resetAllFilters()">
+      <ng-icon name="biTrash" /> Limpiar Filtros
+    </button>
+    @for (filterGroup of categoryFilters; track filterGroup.id) {
+    <div class="select-wrapper">
+      <ng-icon class="select-arrow-icon" name="biChevron" />
+      <select
+        class="select"
+        [(ngModel)]="filterGroup.selectedValue"
+        (ngModelChange)="searchForCategory(filterGroup.id)"
+      >
+        <option selected disabled value="">
+          {{ filterGroup.placeholder }}
+        </option>
+        @for (option of filterGroup.options; track option.value) {
+        <option [value]="option.value">{{ option.label }}</option>
+        }
+      </select>
+    </div>
+    }
+  </div>
+  <div class="search">
+    <input
+      class="form-control"
+      type="text"
+      placeholder="Buscar por skin..."
+      name="title"
+      #title="ngModel"
+      [(ngModel)]="search"
+      (ngModelChange)="searchChange()"
+    />
+    <label class="d-flex align-items-center justify-content-center"
+      ><ng-icon name="biSearch"
+    /></label>
+    @if(title.touched && !title.valid){
+    <span class="badge bg-danger">Campo título no válido.</span>
+    }
+  </div>
+  <div class="pt-4">
     @if (productListFiltered.length<=0) {
     <div class="pt-5 no-product">No se han encontrado productos...</div>
-    } @else { @for (product of productListFiltered; track product.id) {
-    <div class="col-lg-4">
+    } @else {
+    <div class="container-cards">
+      @for (product of displayedProducts; track product.id) {
       <div [className]="[ `card img-container card-${product.rareLevel}`]">
-        @if (product.img) {
         <img class="img-fluid rounded img-product" [src]="product.img" />
-        } @else {
-        <div class="img-filling"></div>
-        }
         <div class="card-body">
           <div class="card-title">
             <p>
               <strong
                 >{{
-                  product.gun.includes("knife")
+                  product.type.includes("knife")
                     ? "★"
-                    : product.gun.toLocaleUpperCase() + " |"
+                    : product.type.toLocaleUpperCase() + " |"
                 }}
                 {{ product.name }}
                 {{ product.phase ? "P" + product.phase : "" }}</strong
@@ -88,7 +82,40 @@
           >
         </div>
       </div>
+      }
     </div>
-    } }
+    }
   </div>
+  @if (productListFiltered.length > itemsPerPage) {
+  <nav
+    aria-label="Product Page navigation"
+    class="pt-5 w-100 d-flex justify-content-center"
+  >
+    <ul class="container-pagination">
+      <li
+        class="page-item"
+        (click)="prevPage()"
+        [class.disabled]="currentPage === 1"
+      >
+        &laquo;
+      </li>
+      @for (page of pages; track page) {
+      <li
+        (click)="goToPage(page)"
+        class="page-item"
+        [class.active]="page === currentPage"
+      >
+        {{ page }}
+      </li>
+      }
+      <li
+        class="page-item"
+        (click)="nextPage()"
+        [class.disabled]="currentPage === totalPages"
+      >
+        &raquo;
+      </li>
+    </ul>
+  </nav>
+  }
 </div>
