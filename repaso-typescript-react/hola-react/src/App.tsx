@@ -13,6 +13,9 @@ function App() {
     const data: User[] = await response.json();
     setUsers(data);
   }
+  function handleSumbit(user: useFormState) {
+    setUsers([...users, { ...user, id: Date.now() }]);
+  }
   useEffect(() => {
     fetchUsers();
   }, []);
@@ -24,11 +27,7 @@ function App() {
             <li key={usuario.id}>{usuario.name}</li>
           ))}
         </ul>
-        <UserForm
-          handleSumbit={(user) =>
-            setUsers([...users, { ...user, id: Date.now() }])
-          }
-        />
+        <UserForm handleSumbit={handleSumbit} />
       </div>
     </>
   );

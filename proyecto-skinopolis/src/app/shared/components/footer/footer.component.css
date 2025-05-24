@@ -1,11 +1,11 @@
-#footer{
-  margin-top: 72px;
+#footer {
+  margin-top: 32px;
   color: #ffd7c3;
   line-height: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  p{
+  p {
     text-align: center;
   }
 }

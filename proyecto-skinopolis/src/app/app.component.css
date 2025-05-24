@@ -13,6 +13,7 @@ p {
   padding: 0px 16px 0px 16px;
   .container-header {
     display: flex;
+    height: 72px;
     justify-content: space-between;
     gap: 32px;
     align-items: center;
@@ -42,6 +43,7 @@ p {
 @media (min-width: 720px) {
   #content {
     .container-header {
+      height: 96px;
       justify-content: start;
       .burger-menu {
         display: none;

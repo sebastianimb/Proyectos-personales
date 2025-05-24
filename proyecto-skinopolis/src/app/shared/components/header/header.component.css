@@ -1,6 +1,5 @@
 #header {
   padding: 54px 0px 54px 0px;
-  height: 84px;
   color: white;
   display: flex;
   align-items: center;
@@ -10,6 +9,7 @@
   display: block;
   font-weight: 800;
   font-size: 32px;
+  margin: 0 !important;
 }
 .logo-container {
   cursor: pointer;
