@@ -31,7 +31,7 @@
     <input
       class="form-control"
       type="text"
-      placeholder="Buscar por skin..."
+      placeholder="¿Qué skin buscas hoy?"
       name="title"
       #title="ngModel"
       [(ngModel)]="search"
@@ -46,9 +46,9 @@
   </div>
   <div class="pt-4 pb-4">
     @if (productListFiltered.length<=0) {
-    <div class="pt-5 no-product">No se han encontrado productos...</div>
+    <div class="py-4 px-3 no-product">No se han encontrado elementos...</div>
     } @else {
-    <div class="container-cards">
+    <div #containerCards class="container-cards">
       @for (product of displayedProducts; track product.id) {
       <div [className]="[ `card img-container card-${product.rareLevel}`]">
         <img class="img-fluid rounded img-product" [src]="product.img" />

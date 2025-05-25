@@ -35,7 +35,7 @@ const allBootstrapIcons = {
     BurgerDisplayComponent,
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrl: './app.component.scss',
   viewProviders: [provideIcons(allBootstrapIcons)],
 })
 export class AppComponent {

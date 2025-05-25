@@ -6,6 +6,6 @@ import { RssIconsComponent } from '../rss-icons/rss-icons.component';
   standalone: true,
   imports: [RssIconsComponent],
   templateUrl: './footer.component.html',
-  styleUrl: './footer.component.css',
+  styleUrl: './footer.component.scss',
 })
 export class FooterComponent {}

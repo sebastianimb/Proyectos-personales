@@ -24,6 +24,10 @@ p {
     }
   }
 }
+#main {
+  margin: 0;
+  padding-bottom: 48px;
+}
 .page-transition-overlay {
   position: fixed;
   top: 0;
@@ -34,8 +38,6 @@ p {
   z-index: 9999;
   pointer-events: none;
   opacity: 0;
-  /* Puedes añadir una transformación inicial si quieres un efecto diferente, ej: */
-  /* transform: scaleY(0); transform-origin: top; */
 }
 .burger-menu {
   cursor: pointer;
@@ -49,5 +51,8 @@ p {
         display: none;
       }
     }
+  }
+  #main {
+    padding-bottom: 90px;
   }
 }

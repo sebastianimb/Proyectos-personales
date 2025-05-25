@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-burger-display',
   imports: [CommonModule, RssIconsComponent, RouterLink, RouterLinkActive],
   templateUrl: './burger-display.component.html',
-  styleUrl: './burger-display.component.css',
+  styleUrl: './burger-display.component.scss',
 })
 export class BurgerDisplayComponent {
   @Input() public burgerActive: boolean = false;

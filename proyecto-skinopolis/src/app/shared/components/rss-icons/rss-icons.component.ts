@@ -5,10 +5,8 @@ import { NgIcon } from '@ng-icons/core';
 @Component({
   selector: 'app-rss-icons',
   standalone: true,
-  imports: [ButtonComponent,NgIcon],
+  imports: [ButtonComponent, NgIcon],
   templateUrl: './rss-icons.component.html',
-  styleUrl: './rss-icons.component.css'
+  styleUrl: './rss-icons.component.scss',
 })
-export class RssIconsComponent {
-
-}
+export class RssIconsComponent {}

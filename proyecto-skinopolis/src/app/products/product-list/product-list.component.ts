@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ProductService } from '../../core/services/product.service';
 import { Product } from '../../core/models/product.model';
 import { ButtonComponent } from '../../shared/components/button/button.component';
@@ -12,9 +12,11 @@ import { CommonModule } from '@angular/common';
   imports: [ButtonComponent, NgIcon, FormsModule, CommonModule],
   providers: [ProductService],
   templateUrl: './product-list.component.html',
-  styleUrl: './product-list.component.css',
+  styleUrl: './product-list.component.scss',
 })
 export class ProductListComponent {
+  @ViewChild('containerCards')
+  containerCards!: ElementRef;
   isFilterOpen = false;
 
   productList: Array<Product> = [];
@@ -34,11 +36,6 @@ export class ProductListComponent {
     this.productList = this._ProvProductService.getProducts();
     this.searchChange();
   }
-  getProductList() {
-    this.productListFiltered = [...this.productList];
-    this.displayedProducts = [...this.productListFiltered];
-    this.resetPaginationAndDisplay();
-  }
   searchChange() {
     this.productListFiltered = this.productList.filter((product) => {
       return (
@@ -53,7 +50,8 @@ export class ProductListComponent {
     this.categoryFilters.forEach((filterGroup) => {
       filterGroup.selectedValue = '';
     });
-    this.getProductList();
+    this.productListFiltered = [...this.productList];
+    this.displayedProducts = [...this.productList];
     this.resetPaginationAndDisplay();
   }
   searchForCategory(id: string) {
@@ -72,6 +70,10 @@ export class ProductListComponent {
     });
     this.productListFiltered = filtered;
     this.resetPaginationAndDisplay();
+    this.containerCards.nativeElement.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+    });
   }
   private resetPaginationAndDisplay(): void {
     this.currentPage = 1;

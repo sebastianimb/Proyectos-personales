@@ -7,17 +7,20 @@
   width: 250px;
   text-align: center;
   cursor: pointer;
-}
-.button div {
-  margin: 0;
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  align-items: center;
-}
-.button:hover {
-  color: white;
-  box-shadow: 4px 4px 4px #141414;
+  > * {
+    cursor: pointer;
+  }
+  &:hover {
+    color: white;
+    box-shadow: 4px 4px 4px #141414;
+  }
+  div {
+    margin: 0;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .btn-hero {
