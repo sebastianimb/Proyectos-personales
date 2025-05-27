@@ -44,6 +44,9 @@ class Game {
     return new GameMemento(this.level, this.health, this.position);
   }
   play(level: number, health: number, position: string) {
+    this.level = level;
+    this.health = health;
+    this.position = position;
     console.log(
       `Jugando en el nivel: ${level}, con ${health} puntos de vida en la posicion: ${position}`
     );
