@@ -9,28 +9,12 @@ import { CreateCarDto, UpdateCarDto } from './dto';
 
 @Injectable()
 export class CarsService {
-  private cars: Array<Car> = [
-    {
-      id: uuid(),
-      brand: 'Toyota',
-      model: 'Corrolla',
-    },
-    {
-      id: uuid(),
-      brand: 'Honda',
-      model: 'Civic',
-    },
-    {
-      id: uuid(),
-      brand: 'Jeep',
-      model: 'Cherokee',
-    },
-  ];
-  getAllCars() {
+  private cars: Array<Car> = [];
+  findAll() {
     return this.cars;
   }
 
-  getCarsById(id: string) {
+  findOne(id: string) {
     const car = this.cars.find((car) => car.id === id);
     if (!car) throw new NotFoundException(`Car with id '${id}' not found.`);
     return car;
@@ -43,7 +27,7 @@ export class CarsService {
   }
 
   update(id: string, updateCarDto: UpdateCarDto) {
-    let updateCar = this.getCarsById(id);
+    let updateCar = this.findOne(id);
 
     if (updateCarDto.id && updateCarDto.id !== id) {
       throw new BadRequestException();
@@ -51,7 +35,7 @@ export class CarsService {
 
     this.cars = this.cars.map((car) => {
       if (car.id === id) {
-        updateCar = { ...car, ...updateCarDto, id };
+        updateCar = { ...updateCar, ...updateCarDto, id };
         return updateCar;
       }
       return car;
@@ -60,8 +44,12 @@ export class CarsService {
     return updateCar;
   }
 
-  delete(id: string) {
-    const deleteCar = this.getCarsById(id);
+  remove(id: string) {
+    const deleteCar = this.findOne(id);
     this.cars = this.cars.filter((car) => car.id !== deleteCar.id);
+  }
+
+  fillCarsWithDbData(cars: Array<Car>) {
+    this.cars = cars;
   }
 }

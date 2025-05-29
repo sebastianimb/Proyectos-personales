@@ -19,11 +19,11 @@ export class CarsController {
 
   @Get()
   getAllCars() {
-    return this.carsService.getAllCars();
+    return this.carsService.findAll();
   }
   @Get(':id')
   getCarByid(@Param('id', ParseUUIDPipe) id: string) {
-    return this.carsService.getCarsById(id);
+    return this.carsService.findOne(id);
   }
 
   @Post()
@@ -41,6 +41,6 @@ export class CarsController {
 
   @Delete(':id')
   deleteCar(@Param('id', ParseUUIDPipe) id: string) {
-    return this.carsService.delete(id);
+    return this.carsService.remove(id);
   }
 }
