@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect, Http404
 from django.urls import reverse
 
 days_of_week = {
@@ -15,20 +15,17 @@ days_of_week = {
 # Create your views here.
 
 def index(request):
-    list_items = ''
     days = list(days_of_week.keys())
-    for day in days:
-        day_path = reverse('day-quote', args=[day])
-        list_items += f'<li><a href="{day_path}">{day.upper()}</a></li>'
-    response_html = f'<ul>{list_items}</ul>'
-    return HttpResponse(response_html)
+    return render(request, 'quotes/quotes.html', {'days': days})
 
 def days_week(request, day):
     try:
         quote_text = days_of_week[day]
         return HttpResponse(quote_text)
     except KeyError:
-        return HttpResponseNotFound('No hay frase.')
+        #return HttpResponseNotFound('No hay frase.')
+        #return render(request, 'includes/404.html')
+        raise Http404()
     
 
 def days_wee_with_number(request, day):

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+    {% block title %}
+        Landing page
+    {% endblock title %}
+    
+    {% block content %}
+        <h1>Hola mundo desde template</h1>
+        {% if name == 'sebastian' %}
+            <h2>{{ name | title }}: {{ age }} años</h2>
+        {% elif name == 'fernando' %}
+            <h1> Hola Fernando </h1>
+        {% else %}
+            <h1>Hola Invitado</h1>
+        {% endif %}
+        <h2>Fecha de hoy: {{ today | date:'d/m/Y' }} </h2>
+        <h2> Stack de tecnologias </h2>
+        <ul>
+            {% for tool in stack %}
+                <li>
+                    <a href='{% url "stack" tool.id %}'>{{ tool.name }}</a>
+                </li>
+            {% empty %}
+            <li> No hay tecnologias disponibles</li>
+            {% endfor %}
+        </ul>
+    {% endblock content %}
+        

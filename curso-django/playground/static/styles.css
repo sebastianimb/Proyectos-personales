@@ -1,0 +1,22 @@
+*{
+    margin:0;
+    padding: 0;
+}
+.footer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center; 
+    align-items:center;
+    background-color: #ccc;
+    min-height: 100px;
+}
+.header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items:center;
+    background-color: #ccc;
+    min-height: 100px;
+}

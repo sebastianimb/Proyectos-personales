@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    404 not found
+{% endblock title %}
+
+{% block content %}
+    <div class='not-found-wrapper'>
+        <h1> Esta pagina no existe </h1>
+    </div>
+{% endblock content %}
+    
+
+<style>
+    *{
+        margin:0;
+        paddgin: 0;
+    }
+    .not-found-wrapper{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        align-items:center;
+        background-color: #ccc;
+        min-height: 100px;
+    }
+</style>
