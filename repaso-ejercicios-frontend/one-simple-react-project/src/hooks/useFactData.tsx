@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import getFact from "../services/facts";
+
 export function useFactData() {
   const [fact, setFact] = useState<string>("");
 

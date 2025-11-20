@@ -2,6 +2,7 @@ import React from "react";
 import "./style.css";
 import { useCatImage } from "./hooks/useCatImage";
 import { useFactData } from "./hooks/useFactData";
+import { Button } from "./components/Button";
 
 export function App() {
   const { fact, refreshFact } = useFactData();
@@ -10,7 +11,7 @@ export function App() {
     <main>
       <h1>Random Cat Image by a Random Fact</h1>
       <section>
-        {fact ? <p>{fact}</p> : <p>Loading cat fact...</p>}
+        {fact ? <p>Hecho recibido: {fact}</p> : <p>Loading cat fact...</p>}
         {imgCat ? (
           <img
             src={imgCat}
@@ -21,7 +22,7 @@ export function App() {
         ) : (
           <p>Loading cat image...</p>
         )}
-        {fact && imgCat && <button onClick={refreshFact}>Search Fact</button>}
+        {fact && imgCat && <Button OnClick={refreshFact} />}
       </section>
     </main>
   );
