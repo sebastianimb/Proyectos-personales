@@ -4,15 +4,19 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { App } from "../App";
 import { Button } from "../components/Button";
-//import getFact from "../services/facts";
+import getFact from "../services/facts";
 
-/* const mockGetFact = vi.hoisted(() => vi.fn() as ReturnType<typeof vi.fn>);
+const mockGetFact = vi.hoisted(() => vi.fn());
 
 vi.mock("../services/facts", () => {
   return {
     default: mockGetFact,
   };
-}); */
+});
+
+beforeEach(() => {
+  mockGetFact.mockResolvedValue("Cats are awesome!");
+});
 
 describe("something truthy and falsy", () => {
   it("true to be true", () => {
@@ -41,13 +45,10 @@ describe("App component", () => {
     expect(screen.queryByText("Hola soy un texto que no existe")).toBeNull();
   });
 
-  /* it("renders fact", async () => {
+  it("renders fact", async () => {
     render(<App />);
-    mockGetFact.mockResolvedValueOnce("Cats are great!");
-    const fn = await getFact();
-    console.log(fn);
-    //expect(await screen.findByText(/Hecho recibido:/)).toBeInTheDocument();
-  }); */
+    expect(await screen.findByText(/Hecho recibido:/)).toBeInTheDocument();
+  });
 
   it("learning waitFor", async () => {
     render(<App />);
@@ -66,11 +67,40 @@ describe("App component", () => {
     expect(refreshFact).toHaveBeenCalledTimes(2);
   });
 
-  /* it("learning fireEvent", async () => {
-        render(<App />);
-        const button = await screen.findByRole("button", { name: "Search Fact" });
-        expect(button).toBeInTheDocument();
-        fireEvent.click(button);
-        });
-    */
+  it("call the search image after receiving a fact", async () => {
+    render(<App />);
+    const fact = await screen.findByText(/Hecho recibido:/);
+    expect(fact).toBeInTheDocument();
+    const url =
+      "https://cataas.com/cat/m0O3lbu9KDJK5ful/says/Female%20cats%20tend?position=center&font=Impact&fontSize=50&fontColor=%23fff&fontBackground=none";
+    const fetchMock = vi.fn().mockImplementationOnce(() =>
+      Promise.resolve({
+        status: 200,
+        ok: true,
+        json: () => Promise.resolve({ url: url }),
+      })
+    );
+    vi.stubGlobal("fetch", fetchMock);
+    waitFor(() => {
+      expect(fetchMock).toHaveBeenCalledWith(url);
+    });
+  });
+
+  it("handles fetch failure", async () => {
+    const fetchMock = vi
+      .fn()
+      .mockImplementationOnce(() => Promise.reject("Network error"));
+
+    vi.stubGlobal("fetch", fetchMock);
+    render(<App />);
+    const responseFactService = await getFact();
+    expect(responseFactService).toBe("Cats are awesome!");
+    const fact = await screen.findByText(/Hecho recibido:/);
+    expect(fact).not.toBeNull();
+
+    waitFor(() => {
+      expect(fetchMock).toHaveBeenCalled();
+      expect(screen.getByText(/Loading cat image.../)).toBeInTheDocument();
+    });
+  });
 });

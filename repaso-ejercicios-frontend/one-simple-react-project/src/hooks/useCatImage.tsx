@@ -13,6 +13,9 @@ export function useCatImage(fact: string) {
       .then((data) => {
         const url = data.url;
         setImgCat(url);
+      })
+      .catch((error) => {
+        setImgCat(`Error: ${error}`);
       });
   }, [fact]);
 
