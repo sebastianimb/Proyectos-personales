@@ -92,10 +92,12 @@ describe("App component", () => {
       .mockImplementationOnce(() => Promise.reject("Network error"));
 
     vi.stubGlobal("fetch", fetchMock);
+
     render(<App />);
     const responseFactService = await getFact();
     expect(responseFactService).toBe("Cats are awesome!");
     const fact = await screen.findByText(/Hecho recibido:/);
+    expect(fact).toBeInTheDocument();
     expect(fact).not.toBeNull();
 
     waitFor(() => {
