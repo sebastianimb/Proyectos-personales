@@ -1,29 +1,28 @@
 import React from "react";
 import "./style.css";
-import { useCatImage } from "./hooks/useCatImage";
+import "./styles/gelleryItem.css";
 import { useFactData } from "./hooks/useFactData";
-import { Button } from "./components/Button";
+import { Card } from "./components/Card";
+import { GalleryItem } from "./components/GalleryItem";
 
 export function App() {
   const { fact, refreshFact } = useFactData();
-  const { imgCat } = useCatImage(fact);
   return (
     <main>
       <h1>Random Cat Image by a Random Fact</h1>
-      <section>
-        {fact ? <p>Hecho recibido: {fact}</p> : <p>Loading cat fact...</p>}
-        {imgCat ? (
-          <img
-            src={imgCat}
-            alt={`A cat image from random fact: ${fact
-              .split(" ", 3)
-              .join(" ")}`}
-          />
+      <section className="main-content">
+        {fact ? (
+          <Card fact={fact} refreshFact={refreshFact} />
         ) : (
-          <p>Loading cat image...</p>
+          <p>Loading cat fact...</p>
         )}
-        {fact && imgCat && <Button OnClick={refreshFact} />}
       </section>
+      <h1> Gallery: </h1>
+      <div className="random-gallery">
+        {Array.from({ length: 8 }).map((_, index) => (
+          <GalleryItem key={index} fact={fact} />
+        ))}
+      </div>
     </main>
   );
 }
