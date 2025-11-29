@@ -1,30 +1,18 @@
 .card {
-  display: flex;
-  flex-direction: column;
   padding: 2rem;
   border-radius: 1rem;
   color: #e4e4e4;
   align-items: center;
   text-align: center;
   display: grid;
-  grid-template-rows: subgrid;
-  grid-row: span 3;
+  align-content: start;
   gap: 0;
   width: 100%;
-  align-items: center;
-  align-content: center;
-  min-height: 100dvh;
-}
-
-.card p {
-  padding-top: 1rem;
+  padding-bottom: 4rem;
 }
 
 .card-header {
   margin-bottom: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
 }
 
 .card-header h2 {
@@ -32,23 +20,27 @@
   color: #2beb6b;
 }
 
-.card-header span {
-  margin: 0;
-  color: #2beb6b;
-  font-weight: bold;
-}
-
-.card-body {
-  margin-bottom: 1rem;
-}
-
 .card-body img {
   width: 100%;
   height: auto;
+  min-height: 300px;
   object-fit: cover;
   border-radius: 2rem;
   padding: 1rem;
   max-width: 320px;
+}
+
+.card-footer {
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.card-footer span {
+  margin: 0;
+  color: #2beb6b;
+  font-weight: bold;
 }
 
 .card-footer button {
@@ -62,4 +54,15 @@
   border-radius: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
+}
+
+.card-footer button:hover {
+  background-color: #00ff55;
+}
+
+@media (width > 720px) {
+  .card {
+    padding-bottom: 2rem;
+    align-content: start;
+  }
 }

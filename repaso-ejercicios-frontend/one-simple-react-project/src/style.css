@@ -21,6 +21,7 @@
   margin: 0 auto;
   padding: 0;
   box-sizing: border-box;
+  color: #e4e4e4;
 }
 
 body {
@@ -34,17 +35,10 @@ main {
   min-height: 100dvh;
   text-align: center;
   display: flex;
-  gap: 2rem;
+  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
   border: 1px solid #b6b6b6;
-}
-
-main > section:nth-child(1) {
-  flex: 1;
-}
-
-main > section:nth-child(2) {
-  flex: 2;
 }
 
 header {
@@ -58,14 +52,15 @@ header {
 }
 
 aside {
-  padding: 1rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 1rem;
   border-left: 1px solid #b6b6b6;
   border-right: 1px solid #b6b6b6;
   color: #e4e4e4;
+  padding: 2rem;
+  justify-content: center;
+  width: 100%;
 }
 
 aside h2 {
@@ -100,7 +95,49 @@ h1 {
 }
 
 .main-content {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  gap: 1rem;
+  grid-template-rows: auto 1fr;
   font-size: large;
+}
+
+.fill {
+  background: url("./assets/cat-pattern.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  display: none;
+  opacity: 0.1;
+  mask-image: linear-gradient(to top, #272727, transparent);
+  -webkit-mask-image: linear-gradient(to top, #272727, transparent);
+}
+
+@media (width > 720px) {
+  main {
+    flex-direction: row;
+  }
+
+  main > section:nth-child(1) {
+    flex: 1;
+  }
+
+  main > section:nth-child(2) {
+    flex: 2;
+  }
+
+  .main-content {
+    min-height: 100dvh;
+  }
+
+  .fill {
+    display: block;
+  }
+}
+
+@media (width > 1024px) {
+  aside {
+    padding: 2rem 1rem;
+    justify-content: start;
+  }
 }

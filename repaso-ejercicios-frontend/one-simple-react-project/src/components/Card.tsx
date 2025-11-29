@@ -15,10 +15,6 @@ export function Card({ fact, refreshFact }: CardProps) {
     <div className="card">
       <div className="card-header">
         <h2>Random Cat Image</h2>
-        <p>
-          {" "}
-          <span>Fact received: </span> {fact}
-        </p>
       </div>
       <div className="card-body">
         {imgCat ? (
@@ -35,9 +31,25 @@ export function Card({ fact, refreshFact }: CardProps) {
           <img src={catSpinner} alt="Loading cat image..." />
         )}
       </div>
-      <div className="card-footer">
-        <Button OnClick={refreshFact} />
-      </div>
+      {fact ? (
+        <div className="card-footer">
+          <p>
+            <span>Fact received: </span>
+            {fact}
+          </p>
+          <Button OnClick={refreshFact} />
+        </div>
+      ) : (
+        <div>
+          <img
+            src={catSpinner}
+            width={"100px"}
+            height={"100px"}
+            alt="Loading cat fact..."
+          />
+          <p>Loading...</p>
+        </div>
+      )}
     </div>
   );
 }

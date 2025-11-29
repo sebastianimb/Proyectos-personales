@@ -12,11 +12,8 @@ export function App() {
     <Layout>
       <main>
         <section className="main-content">
-          {fact ? (
-            <Card fact={fact} refreshFact={refreshFact} />
-          ) : (
-            <p>Loading cat fact...</p>
-          )}
+          <Card fact={fact} refreshFact={refreshFact} />
+          <div className="fill"></div>
         </section>
         <section className="random-gallery">
           {Array.from({ length: 5 }).map((_, index) => (
