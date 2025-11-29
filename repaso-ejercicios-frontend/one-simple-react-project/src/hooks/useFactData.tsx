@@ -5,6 +5,7 @@ export function useFactData() {
   const [fact, setFact] = useState<string>("");
 
   const refreshFact = async () => {
+    setFact("");
     getFact().then((newFact) => setFact(newFact));
   };
 

@@ -1,0 +1,23 @@
+.layout-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 200px;
+  grid-template-rows: 100px 1fr 100px;
+  min-height: 100dvh;
+  grid-template-areas:
+    "header header header"
+    "main main aside"
+    "footer footer footer";
+}
+
+footer {
+  grid-area: footer;
+}
+header {
+  grid-area: header;
+}
+main {
+  grid-area: main;
+}
+aside {
+  grid-area: aside;
+}

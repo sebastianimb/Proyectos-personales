@@ -1,5 +1,6 @@
 .card {
-  border: 1px solid #e4e4e4;
+  display: flex;
+  flex-direction: column;
   padding: 2rem;
   border-radius: 1rem;
   color: #e4e4e4;
@@ -10,6 +11,13 @@
   grid-row: span 3;
   gap: 0;
   width: 100%;
+  align-items: center;
+  align-content: center;
+  min-height: 100dvh;
+}
+
+.card p {
+  padding-top: 1rem;
 }
 
 .card-header {
@@ -19,13 +27,24 @@
   gap: 0.5rem;
 }
 
+.card-header h2 {
+  margin: 0;
+  color: #2beb6b;
+}
+
+.card-header span {
+  margin: 0;
+  color: #2beb6b;
+  font-weight: bold;
+}
+
 .card-body {
   margin-bottom: 1rem;
 }
 
 .card-body img {
-  width: 250px;
-  height: 250px;
+  width: 100%;
+  height: auto;
   object-fit: cover;
   border-radius: 2rem;
   padding: 1rem;
@@ -35,6 +54,8 @@
 .card-footer button {
   padding: 0.5rem 1rem;
   font-size: 1rem;
+  width: 200px;
+  height: 50px;
   background-color: #2beb6b;
   color: #192023;
   border: none;

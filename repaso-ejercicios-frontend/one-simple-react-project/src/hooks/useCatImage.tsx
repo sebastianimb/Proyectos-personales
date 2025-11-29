@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 
 export function useCatImage(fact: string) {
-  const [imgCat, setImgCat] = useState<string>("");
+  const [imgCat, setImgCat] = useState<string | null>("");
 
   useEffect(() => {
-    if (!fact) return;
+    if (!fact || typeof fact !== "string") return;
+    setImgCat("");
     const firstThreeWords = fact.split(" ", 3).join(" ");
     fetch(
       `https://cataas.com/cat/says/${firstThreeWords}?size=50&color=red&json=true`
@@ -14,8 +15,8 @@ export function useCatImage(fact: string) {
         const url = data.url;
         setImgCat(url);
       })
-      .catch((error) => {
-        setImgCat(`Error: ${error}`);
+      .catch(() => {
+        setImgCat(null);
       });
   }, [fact]);
 
