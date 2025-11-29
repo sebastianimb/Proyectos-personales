@@ -1,4 +1,4 @@
-.card {
+.search-wrapper {
   padding: 2rem;
   border-radius: 1rem;
   color: #e4e4e4;
@@ -11,16 +11,16 @@
   padding-bottom: 4rem;
 }
 
-.card-header {
+.search-header {
   margin-bottom: 1rem;
 }
 
-.card-header h2 {
+.search-header h2 {
   margin: 0;
   color: #2beb6b;
 }
 
-.card-body img {
+.search-body img {
   width: 100%;
   height: auto;
   min-height: 300px;
@@ -30,20 +30,20 @@
   max-width: 320px;
 }
 
-.card-footer {
+.search-footer {
   padding-top: 1rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
-.card-footer span {
+.search-footer span {
   margin: 0;
   color: #2beb6b;
   font-weight: bold;
 }
 
-.card-footer button {
+.search-footer button {
   padding: 0.5rem 1rem;
   font-size: 1rem;
   width: 200px;
@@ -56,12 +56,12 @@
   transition: background-color 0.3s ease;
 }
 
-.card-footer button:hover {
+.search-footer button:hover {
   background-color: #00ff55;
 }
 
 @media (width > 720px) {
-  .card {
+  .search-wrapper {
     padding-bottom: 2rem;
     align-content: start;
   }

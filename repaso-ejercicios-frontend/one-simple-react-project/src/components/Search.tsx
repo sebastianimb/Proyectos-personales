@@ -1,7 +1,7 @@
 import React from "react";
 import { useCatImage } from "../hooks/useCatImage";
-import { Button } from "../components/Button";
-import "../styles/card.css";
+import { Button } from "./Button";
+import "../styles/search.css";
 import catSpinner from "../assets/catSpinner.gif";
 
 type CardProps = {
@@ -9,14 +9,14 @@ type CardProps = {
   refreshFact: () => void;
 };
 
-export function Card({ fact, refreshFact }: CardProps) {
+export function Search({ fact, refreshFact }: CardProps) {
   const { imgCat } = useCatImage(fact);
   return (
-    <div className="card">
-      <div className="card-header">
+    <div className="search-wrapper">
+      <div className="search-header">
         <h2>Random Cat Image</h2>
       </div>
-      <div className="card-body">
+      <div className="search-body">
         {imgCat ? (
           <img
             src={imgCat}
@@ -32,7 +32,7 @@ export function Card({ fact, refreshFact }: CardProps) {
         )}
       </div>
       {fact ? (
-        <div className="card-footer">
+        <div className="search-footer">
           <p>
             <span>Fact received: </span>
             {fact}
