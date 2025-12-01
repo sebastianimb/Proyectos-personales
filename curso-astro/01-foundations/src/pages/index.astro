@@ -1,0 +1,17 @@
+---
+import CustomTitle from "../components/CustomTitle.astro"
+import MainLayout from "../layouts/mainLayout.astro"
+const title = "Home Page"
+---
+<MainLayout title={title}>
+	<section>
+		<CustomTitle title={title} />
+		<p>Momento actual { new Date().toLocaleTimeString() }</p>
+		<p id="current-time">Momento actual real: </p>
+	</section>
+	<script>
+		const currentTime: string = new Date().toLocaleTimeString();
+		const timeElement = document.getElementById('current-time') as HTMLElement;
+		timeElement.innerText = `Momento actual real: ${currentTime}`;
+	</script>
+</MainLayout>

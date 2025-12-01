@@ -1,0 +1,18 @@
+---
+import CustomTitle from "../components/CustomTitle.astro"
+import MainLayout from "../layouts/mainLayout.astro"
+const name = 'Sebastián Molina'
+const title = "About"
+---
+<MainLayout title={title}>
+	<section>
+		<CustomTitle title={title}/>
+		<h1>{name}</h1>
+	</section>
+</MainLayout>
+
+<style>
+	h1 {
+		color: rgb(65, 234, 246);
+	}
+</style>
