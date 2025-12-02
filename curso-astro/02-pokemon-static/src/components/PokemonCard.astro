@@ -1,0 +1,27 @@
+---
+import type { PokemonById } from "../interfaces/pokemon-by-id.response"
+interface Props {
+    url: string
+}
+const { url } = Astro.props
+const resp = await fetch(url)
+const data = await resp.json() as PokemonById
+
+function capitalize(str: string): string {
+    if(!str) return ""
+    return str.charAt(0).toUpperCase() + str.slice(1)
+}
+---
+
+<div id="pokemon-card" class="border p-2 rounded-lg border-gray-600 grid gap-2 grid-rows-subgrid row-span-3 content-center justify-center">
+    <div id="card-header" class="text-center">
+        {capitalize(data.name)}
+    </div>
+    <div id="card-body" class="flex justify-center">
+        <img src={data.sprites.front_default} alt={data.name}>
+    </div>
+    <div id="card-footer" class="flex gap-4 p-2">
+        {data.types.map( (type) => <div class="p-2 border border-gray-600 rounded-lg">{capitalize(type.type.name)}</div> )}
+    </div>
+</div>
+
