@@ -58,12 +58,14 @@ export default function Search() {
         onChange={(e) => {
           fetchData(e);
         }}
-        className="p-2 px-4 rounded-md w-full min-h-10 border border-gray-200 "
+        className="p-2 px-4 rounded-md w-full min-h-10 border border-gray-500 "
       />
       <div className="p-16">
         {pokeData && (
-          <div className="border w-full border-gray-500 rounded-xl flex flex-col p-4 justify-center">
-            <h2 className="text-xl font-bold capitalize">{pokeData.name}</h2>
+          <div className="border w-full bg-teal-600 border-gray-200 rounded-xl flex flex-col justify-center">
+            <h2 className="text-gray-200 bg-teal-700 rounded-tl-xl rounded-tr-xl py-4 text-3xl font-bold capitalize border-b-2 w-full">
+              {pokeData.name}
+            </h2>
             <img src={pokeData.sprites?.front_default} alt={pokeData.name} />
           </div>
         )}
