@@ -1,0 +1,20 @@
+---
+import Layout from "@layouts/Layout.astro";
+---
+<Layout title="404 Not Found">
+    <div class="w-full flex flex-col justify-center items-center align-middle min-h-dvh">
+        <div class="text-2xl text-red-500 tracking-widest">Sorry</div>
+        <div id="404" class="flex py-4 items-center justify-center align-middle">
+            <p class="text-9xl">4</p>
+            <img class="h-36" src="../../public/404.png" alt="a empty pokeball">
+            <p class="text-9xl">4</p>
+        </div>
+        <div class="text-2xl tracking-widest">
+            Page not found
+        </div>
+        <a href="/pokemons/1" class="bg-blue-500 tracking-widest hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 my-12 rounded">
+            <p>BACK TO HOME
+            </p>
+        </a>
+    </div>
+</Layout>
