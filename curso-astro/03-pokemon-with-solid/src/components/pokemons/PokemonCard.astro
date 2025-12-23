@@ -1,0 +1,39 @@
+---
+import type { PokemonById } from "@interfaces/pokemon-by-id.response"
+interface Props {
+    url: string
+    isBig?: boolean
+}
+const { url, isBig } = Astro.props
+const resp = await fetch(url)
+const data = await resp.json() as PokemonById
+const id = url.split("/").at(-2)
+const srcImage = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
+---
+<a
+    href=`/pokemons/${data.name}`
+    class:list={ [`p-2 rounded-lg border-gray-600 grid gap-2 grid-rows-subgrid row-span-2 content-center justify-center`,
+        {
+            border: !isBig
+        }
+    ] }>
+    <div class="text-center w-full flex justify-center text-xl capitalize">
+        <img transition:name={`${data.name}-image`} class:list={["w-26 h-26", {"w-46 h-46": isBig}]} src={srcImage} alt={data.name}>
+    </div>
+    { !isBig && (
+        <div class="text-center tex-xl capitalize">
+            #{id} {data.name}
+        </div>
+    ) }
+    <div id="card-footer" class="flex gap-4 p-2 flex-wrap justify-center">
+        {isBig
+            ? (
+                data.types.map((type) => (
+                    <div class="p-2 border border-gray-600 rounded-lg capitalize">{type.type.name}</div>
+                ))
+            )
+            : ""
+        }
+    </div>
+</a>
+

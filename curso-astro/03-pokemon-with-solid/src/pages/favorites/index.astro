@@ -1,0 +1,19 @@
+---
+import { FavoritesPokemons } from "@/components/pokemons/FavoritesPokemons";
+import { Counter } from "@/components/shared/Counter";
+import Title from "@components/shared/Title.astro";
+import Layout from "@layouts/Layout.astro";
+
+
+---
+<Layout title={"Favorites"}>
+    <div class="py-8 px-0">
+        <Title> Favorites </Title>
+    </div>
+    <FavoritesPokemons client:only="solid-js"/>
+   <div class="mt-4">
+     <Counter client:only="solid-js" initialValue={1} transition:persist="counter" transition:persist-props>
+        <Title>Integración Framework Solid </Title>
+    </Counter>
+   </div>
+</Layout>

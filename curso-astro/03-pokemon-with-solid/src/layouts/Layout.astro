@@ -1,0 +1,39 @@
+---
+import { siteInfo } from "@const/site-info.ts"
+import "../styles/global.css"
+import { ClientRouter } from "astro:transitions";
+import NavBar from "@components/shared/NavBar.astro"
+interface Props {
+	title:string
+	image?:string
+	description?:string
+}
+const { title = siteInfo.title , description = siteInfo.description, image } = Astro.props
+---
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+
+		<!-- SEO -->
+		<meta name="description" content={description} />
+		<meta name="author" content="Sebastian Molina" />
+
+		<!-- OG Metatag -->
+		<meta property="og:title" content={title}/>
+		<meta property="og:description" content={description}/>
+		<meta property="og:image" content={image}/>
+
+		<!-- Required -->
+		<title>{title}</title>
+
+		<!-- ViewTransitions -->
+		 <ClientRouter />
+	</head>
+	<body class="bg-slate-800 text-slate-100 m-auto max-w-3xl">
+		<NavBar />
+        <slot />
+	</body>
+</html>

@@ -11,6 +11,7 @@
       "@interfaces/*": ["./src/interfaces/*"],
       "@pages/*": ["./src/pages/*"],
       "@styles/*": ["./src/styles/*"],
+      "@assets/*": ["./src/assets/*"],
       "@const/*": ["./src/const/*"]
     }
   }

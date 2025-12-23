@@ -1,0 +1,93 @@
+---
+import type { PokemonListResponse } from "@interfaces/pokemon-list.response";
+import Layout from "@layouts/Layout.astro";
+import PokemonCard from "@components/pokemons/PokemonCard.astro";
+import type { GetStaticPaths } from "astro";
+import Title from "@/components/shared/Title.astro";
+import { Icon } from 'astro-icon/components'
+
+export const getStaticPaths = (async() => {
+
+    const resp = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
+    const { results } = (await resp.json()) as PokemonListResponse;
+    return results.map(({ name, url }) => ( { params: { name }, props: { url } } ));
+}) satisfies GetStaticPaths;
+
+const { name } = Astro.params
+const { url } = Astro.props
+const id = url.split("/").at(-2)
+const cries = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${id}.ogg`
+const imageSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
+---
+<Layout title={`Pokemon - #${id} ${name}`} description=`Información sobre el pokemon ${name}` image={imageSrc}>
+   <section class="mt-10 mx-10 flex flex-col justify-center items-center">
+    <div class="flex flex-row gap-2 align-middle justify-center w-full items-center mb-4">
+        <div>
+            <button onclick="history.back()" class="hover:underline text-blue-400 ">Back to list</button>
+            <Title>{ name }</Title>
+        </div>
+         <button id="btn-favorite" class="btn-favorite flex items-center justify-between gap-4" data-name={name} data-id={id} aria-label="Agregar a favoritos">
+            <Icon data-outline name="heart-no-fill" size={35}/>
+            <Icon data-full name="heart-fill" size={35} class="hidden"/>
+        </button>
+    </div>
+    <PokemonCard isBig url={url}/>
+
+    <audio controls class="mt-5" src={cries}></audio>
+   </section>
+</Layout>
+
+<script>
+    import type { FavoritePokemons } from "@/interfaces/favorites-pokemons";
+
+    const handlePageLoad = () => {
+        let favoritePokemon: FavoritePokemons[] = JSON.parse( localStorage.getItem('favorites') || '[]' );
+
+        const btnFavorite = document.getElementById('btn-favorite') as HTMLElement;
+
+        if (!btnFavorite) return;
+        
+        const name = btnFavorite.dataset.name as string;
+        const id = Number(btnFavorite.dataset.id);
+        const isFavorite = favoritePokemon.some( pokemon => pokemon.name === name );
+
+        const heartOutline = btnFavorite.querySelector('[data-outline]') as HTMLElement;
+        const heartFill = btnFavorite.querySelector('[data-full]') as HTMLElement;
+
+        if (isFavorite) {
+            heartOutline.classList.add('hidden');
+            heartFill.classList.remove('hidden');
+        }
+
+        const toggleFavorite = () => {
+            const isFavorite = favoritePokemon.some( pokemon => pokemon.name === name );
+
+            if (isFavorite) {
+                favoritePokemon = favoritePokemon.filter( pokemon => pokemon.name !== name );
+            } else {
+                favoritePokemon.push({ name, id });
+            }
+
+            localStorage.setItem('favorites', JSON.stringify(favoritePokemon));
+        }
+
+        btnFavorite.addEventListener('click', ()=>{
+            heartOutline.classList.toggle('hidden');
+            heartFill.classList.toggle('hidden');
+            toggleFavorite();
+        })
+    }
+
+    document.addEventListener('astro:page-load', handlePageLoad);
+
+</script>
+
+<style>
+    @reference "@styles/global.css";
+    a {
+        @apply hover:underline text-blue-400;
+    }
+    .btn-favorite {
+        @apply cursor-pointer hover:animate-pulse;
+    }
+</style>
