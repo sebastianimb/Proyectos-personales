@@ -39,7 +39,8 @@ def get_posts(query: str | None = Query(default=None, description="Search query 
             result = [post for post in BLOG_POST if query.lower() in post["title"].lower()]
             """ for post in BLOG_POST:
                 if query.lower() in post["title"].lower():
-                    result.append(post) """
+                    result.append(post)  
+            """
             return {"data": result, "query": query}
     return {"data": BLOG_POST}
 
@@ -48,12 +49,11 @@ def get_post(
     post_id: int,
     include_content: bool | None = Query(default=True, description="Include content in the response")
 ):
-
     """ for post in BLOG_POST:
-if post["id"] == post_id:
-if not include_content:
-return {"data": {"id": post["id"], "title": post["title"]}}
-return {"data": post}
+            if post["id"] == post_id:
+                if not include_content:
+                    return {"data": {"id": post["id"], "title": post["title"]}}
+                return {"data": post}
     """
     result = next((post for post in BLOG_POST if post["id"] == post_id), None)
     if result is None:
