@@ -1,4 +1,6 @@
-from fastapi import FastAPI, Query, Body, HTTPException
+from fastapi import FastAPI, Query, HTTPException
+from pydantic import BaseModel, Field
+from typing import Optional
 
 app = FastAPI(title="Mini blog")
 
@@ -8,6 +10,25 @@ BLOG_POST = [{"id": 1, "title": "First Post", "content": "This is the content of
              {"id": 4, "title": "Fourth Post", "content": "This is the content of the fourth post."},
              {"id": 5, "title": "Fifth Post", "content": "This is the content of the fifth post."}]
 
+class PostBase(BaseModel):
+    title: str
+    content: Optional[str] = "Pending content"
+
+class PostCreate(BaseModel):
+    title: str = Field(...,
+                       min_length=3,
+                       max_length=100,
+                       description="Title of the blog post (min 3 characters, max 100 characters)",
+                       examples=["First Post"])
+    content: Optional[str] = Field(default="Pending content",
+                                   min_length=10,
+                                   description="Content of the blog post",
+                                   examples=["This is the content of the blog post."])
+
+class PostUpdate(BaseModel):
+    title: str
+    content: Optional[str] = None
+
 @app.get("/")
 def home():
     return {"message": "Welcome to the Mini Blog"}
@@ -15,56 +36,51 @@ def home():
 @app.get("/posts")
 def get_posts(query: str | None = Query(default=None, description="Search query for blog posts")):
     if query:
-        result = [post for post in BLOG_POST if query.lower() in post["title"].lower()]
-        """ for post in BLOG_POST:
-            if query.lower() in post["title"].lower():
-                result.append(post) """
-        return {"data": result, "query": query}
+            result = [post for post in BLOG_POST if query.lower() in post["title"].lower()]
+            """ for post in BLOG_POST:
+                if query.lower() in post["title"].lower():
+                    result.append(post) """
+            return {"data": result, "query": query}
     return {"data": BLOG_POST}
 
 @app.get("/posts/{post_id}")
 def get_post(
     post_id: int,
     include_content: bool | None = Query(default=True, description="Include content in the response")
-    ):
-    
+):
+
     """ for post in BLOG_POST:
-        if post["id"] == post_id:
-            if not include_content:
-                return {"data": {"id": post["id"], "title": post["title"]}}
-            return {"data": post}
+if post["id"] == post_id:
+if not include_content:
+return {"data": {"id": post["id"], "title": post["title"]}}
+return {"data": post}
     """
     result = next((post for post in BLOG_POST if post["id"] == post_id), None)
-    result_copy = result.copy() if result else None
-    
+    if result is None:
+        raise HTTPException(status_code=404, detail="Post not found")
+
+    result_copy = result.copy()
+
     if not include_content:
         result_copy.pop("content", None)
         return {"data": result_copy}
-    
-    if result:
-        return {"data": result}
-    
-    raise HTTPException(status_code=404, detail="Post not found")
+
+    return {"data": result}
 
 @app.post("/posts")
-def create_post(post: dict = Body(..., description="The blog post to create")):
-    if "title" not in post or "content" not in post:
-        return {"error": "Both 'title' and 'content' are required fields."}
-    
-    if not str(post["title"]).strip():
-        return {"error": "The 'title' field must be a non-empty string."}
-    
+def create_post(post: PostCreate):
     new_id = (BLOG_POST[-1]["id"] + 1) if BLOG_POST else 1
-    new_post = {"id": new_id, "title": post["title"], "content": post["content"]}
+    new_post = {"id": new_id, "title": post.title, "content": post.content}
     BLOG_POST.append(new_post)
     return {"message": "Post created successfully", "data": new_post}
 
 @app.put("/posts/{post_id}")
-def update_post(post_id: int, post: dict = Body(..., description="The blog post to update")):
+def update_post(post_id: int, post: PostUpdate):
     for existing_post in BLOG_POST:
         if existing_post["id"] == post_id:
-            if "title" in post: existing_post["title"] = post["title"]
-            if "content" in post: existing_post["content"] = post["content"]
+            payload = post.model_dump(exclude_unset=True)
+            if post.title is not None: existing_post["title"] = payload["title"]
+            if post.content is not None: existing_post["content"] = payload["content"]
             return {"message": "Post updated successfully", "data": existing_post}
     raise HTTPException(status_code=404, detail="Post not found")
 

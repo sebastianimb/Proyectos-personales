@@ -1,2 +1,6 @@
 # Local Pi runtime state
 .atl/
+
+# Python bytecode cache
+__pycache__/
+*.pyc
