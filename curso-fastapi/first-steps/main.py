@@ -1,7 +1,21 @@
+import os
+from math import ceil
+from datetime import datetime
 from fastapi import FastAPI, Query, HTTPException, Path
 from pydantic import BaseModel, Field, field_validator, EmailStr
 from typing import Optional, List, Union, Literal
-from math import ceil
+from sqlalchemy import create_engine, Integer, String, Text, DateTime
+from sqlalchemy.orm import sessionmaker, Session, DeclarativeBase, Mapped, mapped_column
+
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./blog.db")
+print(f"Using database URL: {DATABASE_URL}")
+
+engine_kwargs = {}
+if DATABASE_URL.startswith("sqlite"):
+    engine_kwargs["connect_args"] = {"check_same_thread": False}
+
+engine = create_engine(DATABASE_URL, echo=True, future=True, **engine_kwargs)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine, class_=Session)
 
 app = FastAPI(title="Mini blog")
 
@@ -11,6 +25,28 @@ BLOG_POST = [{"id": 1, "title": "First Post", "content": "This is the content of
              {"id": 4, "title": "Fourth Post", "content": "This is the content of the fourth post.", "tags": [{"name": "Python"}, {"name": "FastAPI"}], "author": {"name": "Jane Smith", "email": "jane.smith@example.com"}},
              {"id": 5, "title": "Fifth Post", "content": "This is the content of the fifth post.", "tags": [{"name": "Python"}, {"name": "FastAPI"}], "author": {"name": "John Doe", "email": "john.doe@example.com"}}]
 
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+        
+############################# BD class
+class Base(DeclarativeBase):
+    pass
+
+class PostORM(Base):
+    __tablename__ = "posts"
+    
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True, autoincrement=True)
+    title: Mapped[str] = mapped_column(String(100), nullable=False, index=True)
+    content: Mapped[str] = mapped_column(Text, nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow(), nullable=True)
+    
+Base.metadata.create_all(bind=engine) # dev, en produccion se hace con migraciones.
+
+############################## Models 
 class Tag(BaseModel):
     name: str = Field(..., min_length=1, max_length=30, description="Name of the tag (min 1 character, max 30 characters)", examples=["Python", "FastAPI"])
 
