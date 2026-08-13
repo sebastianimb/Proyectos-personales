@@ -143,7 +143,8 @@ def get_posts(
 def get_posts_by_tags(
     tags: List[str] = Query(...,
                             min_length=2,
-                            description="List of tags to filter the blog posts by. Example: ?tags=python&tags=fastapi")):
+                            description="List of tags to filter the blog posts by. Example: ?tags=python&tags=fastapi")
+    ):
     tag_lower = [tag.lower() for tag in tags]
     return [
         post for post in BLOG_POST
