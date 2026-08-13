@@ -1,20 +1,21 @@
 from fastapi import FastAPI, Query, HTTPException, Path
 from pydantic import BaseModel, Field, field_validator, EmailStr
 from typing import Optional, List, Union, Literal
+from math import ceil
 
 app = FastAPI(title="Mini blog")
 
-BLOG_POST = [{"id": 1, "title": "First Post", "content": "This is the content of the first post."},
-             {"id": 2, "title": "Second Post", "content": "This is the content of the second post."},
-             {"id": 3, "title": "Third Post", "content": "This is the content of the third post."},
-             {"id": 4, "title": "Fourth Post", "content": "This is the content of the fourth post."},
-             {"id": 5, "title": "Fifth Post", "content": "This is the content of the fifth post."}]
+BLOG_POST = [{"id": 1, "title": "First Post", "content": "This is the content of the first post.", "tags": [{"name": "Python"}, {"name": "FastAPI"}], "author": {"name": "John Doe", "email": "john.doe@example.com"}},
+             {"id": 2, "title": "Second Post", "content": "This is the content of the second post.", "tags": [{"name": "Django"}, {"name": "FastAPI"}], "author": {"name": "Jane Smith", "email": "jane.smith@example.com"}},
+             {"id": 3, "title": "Third Post", "content": "This is the content of the third post.", "tags": [{"name": "Backend"}, {"name": "FastAPI"}], "author": {"name": "John Doe", "email": "john.doe@example.com"}},
+             {"id": 4, "title": "Fourth Post", "content": "This is the content of the fourth post.", "tags": [{"name": "Python"}, {"name": "FastAPI"}], "author": {"name": "Jane Smith", "email": "jane.smith@example.com"}},
+             {"id": 5, "title": "Fifth Post", "content": "This is the content of the fifth post.", "tags": [{"name": "Python"}, {"name": "FastAPI"}], "author": {"name": "John Doe", "email": "john.doe@example.com"}}]
 
 class Tag(BaseModel):
     name: str = Field(..., min_length=1, max_length=30, description="Name of the tag (min 1 character, max 30 characters)", examples=["Python", "FastAPI"])
 
 class Author(BaseModel):
-    name: str = Field(..., min_length=1, max_length=20, description="Name of the author (min 1 character, max 50 characters)", examples=["John Doe", "Jane Smith"])
+    name: str = Field(..., min_length=1, max_length=20, description="Name of the author (min 1 character, max 20 characters)", examples=["John Doe", "Jane Smith"])
     email: EmailStr
     
 ############################# Request models
@@ -59,11 +60,16 @@ class PostSummary(BaseModel):
     title: str
     
 class PaginatedPosts(BaseModel):
+    page: int
+    per_page: int
     total: int
-    limit: int
-    offset: int
-    posts: List[PostPublic]
-    
+    total_pages: int
+    has_previous: bool
+    has_next: bool
+    order_by: Literal["id", "title"]
+    direction: Literal["asc", "desc"]
+    search: Optional[str] = None
+    items: List[PostPublic]
 ############################# Endpoints
 
 @app.get("/")
@@ -71,7 +77,13 @@ def home():
     return {"message": "Welcome to the Mini Blog"}
 
 @app.get("/posts", response_model=PaginatedPosts)
-def get_posts(query: Optional[str] = Query(
+def get_posts(
+    text: Optional[str] = Query(
+            default=None,
+            deprecated=True,
+            description="Search query for blog posts",
+    ),
+    query: Optional[str] = Query(
             default=None,
             description="Search query for blog posts",
             alias="search",
@@ -79,8 +91,8 @@ def get_posts(query: Optional[str] = Query(
             max_length=50,
             pattern=r"^[\w\sáéíóúñÁÉÍÓÚÑüÜ-]+$",
             ),
-            limit: int = Query(default=10, ge=1, le=50, description="Maximum number of posts to return (between 1 and 50)"),
-            offset: int = Query(default=0, ge=0, description="Number of posts to skip before starting to collect the result set (must be greater than or equal to 0)"),
+            per_page: int = Query(default=10, ge=1, le=50, description="Maximum number of posts to return (between 1 and 50)"),
+            page: int = Query(default=1, ge=1, description="Page number of the results to return (must be a positive integer)"),
             order_by: Literal["id", "title"] = Query("id", description="Field to order the results by"),
             direction: Literal["asc", "desc"] = Query("asc", description="Direction of the ordering (ascending or descending)")):
     
@@ -94,13 +106,49 @@ def get_posts(query: Optional[str] = Query(
         results = [post for post in results if query.lower()
                    in post["title"].lower()]
     
-    total = len(results)
+    total = len(results)    
+    total_pages = ceil(total/per_page) if total > 0 else 0
+    
+    if total_pages == 0:
+        current_page = 1
+    else:
+        current_page = min(page, total_pages)
     
     results = sorted(results, key=lambda post: post[order_by], reverse=(direction == "desc"))
     
-    data = results[offset:offset + limit]
+    if total_pages == 0:
+        items = []
+    else:
+        start = (current_page - 1) * per_page
+        end = start + per_page
+        items = results[start:end]
+        
+    has_prev = current_page > 1
+    has_next = current_page < total_pages
 
-    return PaginatedPosts(total=total, limit=limit, offset=offset, posts=data)
+    return PaginatedPosts(
+        page=current_page,
+        per_page=per_page,
+        total=total,
+        total_pages=total_pages,
+        has_previous=has_prev,
+        has_next=has_next,
+        order_by=order_by,
+        direction=direction,
+        search=query,
+        items=[PostPublic(**post) for post in items],
+    )
+
+@app.get("/posts/by-tags", response_model=List[PostPublic])
+def get_posts_by_tags(
+    tags: List[str] = Query(...,
+                            min_length=2,
+                            description="List of tags to filter the blog posts by. Example: ?tags=python&tags=fastapi")):
+    tag_lower = [tag.lower() for tag in tags]
+    return [
+        post for post in BLOG_POST
+        if any(tag["name"].lower() in tag_lower for tag in post.get("tags", []))
+    ]
 
 @app.get("/posts/{post_id}",response_model=Union[PostPublic, PostSummary],
                             response_description="Post found")
