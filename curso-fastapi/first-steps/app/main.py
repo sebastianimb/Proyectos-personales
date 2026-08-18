@@ -4,33 +4,16 @@ from datetime import datetime
 from fastapi import FastAPI, Query, HTTPException, Path, status, Depends
 from pydantic import BaseModel, Field, field_validator, EmailStr, ConfigDict 
 from typing import Optional, List, Union, Literal
-from sqlalchemy import create_engine, Integer, String, Text, DateTime, select, func, update, delete, UniqueConstraint, ForeignKey, Table, Column
+from sqlalchemy import Integer, String, Text, DateTime, select, func, update, delete, UniqueConstraint, ForeignKey, Table, Column
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
-from sqlalchemy.orm import sessionmaker, Session, DeclarativeBase, Mapped, mapped_column, relationship, selectinload, joinedload
+from sqlalchemy.orm import Mapped, mapped_column, relationship, selectinload, joinedload
 from dotenv import load_dotenv
 
 load_dotenv()
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./blog.db")
-
-engine_kwargs = {}
-if DATABASE_URL.startswith("sqlite"):
-    engine_kwargs["connect_args"] = {"check_same_thread": False}
-
-engine = create_engine(DATABASE_URL, echo=True, future=True, **engine_kwargs)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine, class_=Session)
 
 app = FastAPI(title="Mini blog")
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-        
+      
 ############################# BD class
-class Base(DeclarativeBase):
-    pass
 
 posts_tags = Table(
     "post_tags",
@@ -70,9 +53,6 @@ class TagORM(Base):
     posts: Mapped[List["PostORM"]] = relationship(secondary=posts_tags,
                                                  back_populates="tags",
                                                  lazy="selectin")
-
-
-
     
 Base.metadata.create_all(bind=engine) # dev, en produccion se hace con migraciones.
 
