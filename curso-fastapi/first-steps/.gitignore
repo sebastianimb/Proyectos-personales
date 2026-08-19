@@ -8,6 +8,7 @@ __pycache__/
 
 # Virtual environment
 fastenv/
+.venv
 
 # Database files (generated at runtime)
 *.db
