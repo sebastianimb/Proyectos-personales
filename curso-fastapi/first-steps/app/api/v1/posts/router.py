@@ -6,7 +6,7 @@ from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 from app.core.db import get_db
 from .schemas import (PostPublic, PaginatedPosts, PostUpdate, PostSummary, PostCreate)
 from .repository import PostRepository
-
+from app.core.security import oauth2_scheme, get_current_user
 
 router = APIRouter(prefix="/post", tags=["posts"])
 
@@ -62,13 +62,8 @@ def get_posts_by_tags(
                             description="List of tags to filter the blog posts by. Example: ?tags=python&tags=fastapi"), 
     db: Session = Depends(get_db)):
     
-    normalized_tags_names = [tag.strip().lower() for tag in tags if tag.strip()]
-    
-    if not normalized_tags_names:
-        return []
-    
     repository = PostRepository(db)
-    return  repository.by_tags(normalized_tags_names)
+    return  repository.by_tags(tags)
 
 @router.get("/{post_id}",response_model=Union[PostPublic, PostSummary], response_description="Post found", status_code=status.HTTP_200_OK)
 def get_post(post_id: int = Path(
@@ -88,14 +83,14 @@ def get_post(post_id: int = Path(
     return PostPublic.model_validate(post, from_attributes=True) if include_content else PostSummary.model_validate(post, from_attributes=True)
     
 @router.post("/", response_model=PostPublic, response_description="Post created successfully", response_model_exclude_none=True, status_code=status.HTTP_201_CREATED)
-def create_post(post: PostCreate, db: Session = Depends(get_db)):
+def create_post(post: PostCreate, db: Session = Depends(get_db), user=Depends(get_current_user)):
     repository = PostRepository(db)
     
     try:
         created_post = repository.create_post(
             title=post.title,
             content=post.content or "",
-            author=post.author.model_dump() if post.author else None,
+            author=user,
             tags=[tag.model_dump() for tag in post.tags]
         )
         db.commit()
@@ -109,7 +104,7 @@ def create_post(post: PostCreate, db: Session = Depends(get_db)):
         raise HTTPException(status_code=500, detail="Error in create post")
 
 @router.put("/{post_id}", response_model=PostPublic, response_description="Post updated successfully", response_model_exclude_none=True)
-def update_post(post_id: int, updates: PostUpdate, db: Session = Depends(get_db)):
+def update_post(post_id: int, updates: PostUpdate, db: Session = Depends(get_db), user=Depends(get_current_user)):
     repository = PostRepository(db)
     db_post = repository.get(post_id)
     
@@ -117,7 +112,7 @@ def update_post(post_id: int, updates: PostUpdate, db: Session = Depends(get_db)
             raise HTTPException(status_code=404, detail="Post not found")
     
     try:
-        post_updated =repository.update_post(post=db_post, updates=updates.model_dump(exclude_unset=True))
+        post_updated = repository.update_post(post=db_post, updates=updates.model_dump(exclude_unset=True))
         db.commit()
         db.refresh(post_updated)
         return post_updated
@@ -126,7 +121,7 @@ def update_post(post_id: int, updates: PostUpdate, db: Session = Depends(get_db)
         raise HTTPException(status_code=500, detail="Error in update post")
     
 @router.delete("/{post_id}", status_code=status.HTTP_204_NO_CONTENT)
-def delete_post(post_id: int, db: Session = Depends(get_db)):
+def delete_post(post_id: int, db: Session = Depends(get_db), user=Depends(get_current_user)):
     repository = PostRepository(db)
     db_post = repository.get(post_id)
     
@@ -140,3 +135,7 @@ def delete_post(post_id: int, db: Session = Depends(get_db)):
     except SQLAlchemyError:
         db.rollback()
         raise HTTPException(status_code=500, detail="Error in delete post")
+    
+@router.get("/secure")
+def secure_endpoint(token: str = Depends(oauth2_scheme)):
+    return {"msg": "Acceso con token", "token": token }

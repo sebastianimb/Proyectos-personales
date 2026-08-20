@@ -28,7 +28,7 @@ class PostCreate(BaseModel):
                                    description="Content of the blog post",
                                    examples=["This is the content of the blog post."])
     tags: List[Tag] = Field(default_factory=list, description="List of tags associated with the blog post")
-    author: Optional[Author] = None
+    #author: Optional[Author] = None
     
     @field_validator("title")
     @classmethod

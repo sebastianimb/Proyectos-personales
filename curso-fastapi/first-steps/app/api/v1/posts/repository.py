@@ -73,20 +73,15 @@ class PostRepository:
         if tag_obj:
             return tag_obj
         
-        try:
-            tag_obj = TagORM(name=name)
-            self.db.add(tag_obj)
-            self.db.flush()
-            return tag_obj
-        
-        except IntegrityError:
-            self.db.rollback()
-            return self.db.execute(select(TagORM).where(TagORM.name.ilike(name))).scalar_one()
+        tag_obj = TagORM(name=name)
+        self.db.add(tag_obj)
+        self.db.flush()
+        return tag_obj
         
     def create_post(self, title: str, content: str, author: Optional[dict], tags: List[dict]) -> PostORM:
         author_obj = None
         if author:
-            author_obj = self.ensure_author(author["name"], author["email"])
+            author_obj = self.ensure_author(author["username"], author["email"])
             
         new_post = PostORM(title=title, content=content, author=author_obj)
         self.db.add(new_post)
